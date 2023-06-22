@@ -1,17 +1,8 @@
 ﻿Public Class FrmMain
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        FrmCalChecker.Show()
-        FrmFeederCal.Show()
-        FrmManagement.Show()
-
         ResizAndCenter()
 
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
-
-        FrmCalChecker.Hide()
-        FrmFeederCal.Hide()
-        FrmManagement.Hide()
-
         Me.Show()
     End Sub
 
