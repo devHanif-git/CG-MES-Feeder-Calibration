@@ -77,6 +77,7 @@ Partial Class FrmLoading
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.load)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmLoading"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Loading..."

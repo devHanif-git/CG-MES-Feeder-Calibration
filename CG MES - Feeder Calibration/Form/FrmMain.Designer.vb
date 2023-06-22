@@ -219,6 +219,7 @@ Partial Class FrmMain
         Me.Controls.Add(Me.BtnCheck)
         Me.Controls.Add(Me.ImgHero)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CG MES - Feeder Calibration"
