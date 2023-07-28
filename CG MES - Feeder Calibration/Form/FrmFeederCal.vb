@@ -3,10 +3,12 @@
     Dim LastCalDate As Date
     Dim LastCalDateS As String
     Private Sub FrmFeederCal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Guna2ShadowForm1.SetShadowForm(Me)
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
 
         ResizeAndCenter()
 
+        btnDate1.Value = Date.Now
         Me.Show()
         txtFeederID.Focus()
     End Sub
@@ -48,24 +50,20 @@
         Dim calibrationDate As Date
         Dim calibrationDateS As String
 
-        'SQL.AddParam("@FID", txtFeederID.Text.Trim)
-        'SQL.ExecQuery("SELECT TOP 1 FeederType, FGearSize,FColorCode, FStatus, LastCalDate, LatestCalDate FROM FeederManagement INNER JOIN FeederCalHistory ON FeederManagement.FeederNumber = FeederCalHistory.FeederNumber WHERE FeederManagement.FeederNumber = @FID ORDER BY LatestCalDate DESC")
         SQL.AddParam("@FID", txtFeederID.Text.Trim)
-        SQL.ExecQuery("SELECT TOP 1
+        SQL.ExecQuery("SELECT
                   FeederManagement.FeederType,
                   FeederManagement.FGearSize,
                   FeederManagement.FColorCode,
                   FeederManagement.FStatus,
-                  FeederCalHistory.LastCalDate,
-                  FeederCalHistory.LatestCalDate
+                  FeederCalibration.CalibrationDate
               FROM
                   FeederManagement
               LEFT JOIN
-                  FeederCalHistory ON FeederManagement.FeederNumber = FeederCalHistory.FeederNumber
+                  FeederCalibration ON FeederManagement.FeederNumber = FeederCalibration.FeederNumber
               WHERE
-                  FeederManagement.FeederNumber = @FID
-              ORDER BY
-                  FeederCalHistory.LatestCalDate DESC")
+                  FeederManagement.FeederNumber = @FID")
+
         If SQL.HasException(True) Then Exit Sub
 
         If SQL.RecordCount > 0 Then
@@ -75,16 +73,11 @@
                 pnlSection.Enabled = True
                 btnCancel.Enabled = True
 
-                If SQL.DBDT.Rows(0)("LatestCalDate") Is DBNull.Value Then
-                    If SQL.DBDT.Rows(0)("LastCalDate") Is DBNull.Value Then
-                        calibrationDateS = "N/A"
-                        LastCalDateS = calibrationDateS
-                    Else
-                        calibrationDate = Convert.ToDateTime(SQL.DBDT.Rows(0)("LastCalDate"))
-                        LastCalDate = calibrationDate
-                    End If
+                If SQL.DBDT.Rows(0)("CalibrationDate") Is DBNull.Value Then
+                    calibrationDateS = "N/A"
+                    LastCalDateS = calibrationDateS
                 Else
-                    calibrationDate = Convert.ToDateTime(SQL.DBDT.Rows(0)("LatestCalDate"))
+                    calibrationDate = Convert.ToDateTime(SQL.DBDT.Rows(0)("CalibrationDate"))
                     LastCalDate = calibrationDate
                 End If
 
@@ -101,18 +94,23 @@
 
                 lblColor.BackColor = colorFeeder
 
-                If calibrationDate.AddMonths(3) >= currentDate Then
-                    lblLCalDate.BackColor = Color.FromArgb(21, 131, 81)
-                ElseIf calibrationDate = Date.MinValue Then
-                    lblLCalDate.BackColor = Color.FromArgb(186, 25, 27)
+                Dim calibrationNeededDate As Date = calibrationDate.AddMonths(3)
+                Dim calibrationWarningDate As Date = calibrationNeededDate.AddDays(-7)
+
+                If calibrationDate = Date.MinValue Then
+                    lblLCalDate.BackColor = Color.FromArgb(186, 25, 27) ' Red
+                ElseIf currentDate > calibrationNeededDate Then
+                    lblLCalDate.BackColor = Color.FromArgb(186, 25, 27) ' Red
+                ElseIf currentDate >= calibrationWarningDate Then
+                    lblLCalDate.BackColor = Color.FromArgb(241, 202, 32) ' Yellow
                 Else
-                    lblLCalDate.BackColor = Color.FromArgb(186, 25, 27)
+                    lblLCalDate.BackColor = Color.FromArgb(21, 131, 81) ' Green
                 End If
 
                 CenterLabel()
                 txtEmployeeID.Focus()
             Else
-                MessageBox.Show("This Feeder is inoperable; please take note!" & vbCrLf & "This Feeder status is NO GOOD!", "NG Feeder", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("This Feeder is defective; please take note!" & vbCrLf & "This feeder is awaiting repair!", "NG Feeder", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 txtFeederID.Enabled = True
                 txtFeederID.Focus()
                 txtFeederID.SelectAll()
@@ -185,32 +183,49 @@
             txtEmployeeID.Focus()
             txtEmployeeID.SelectAll()
             Exit Sub
+        Else
+            SQL.AddParam("@UID", txtEmployeeID.Text.Trim)
+            SQL.ExecQuery("SELECT * FROM Users WHERE UserID = @UID")
+            If SQL.HasException(True) Then Exit Sub
+
+            If SQL.DBDT.Rows(0)("UserGroup") <> "SMT Feeder" Or SQL.DBDT.Rows(0)("UserGroup") <> "SMT" Or SQL.DBDT.Rows(0)("UserGroup") <> "System Admin" Then
+                MessageBox.Show("You do not have access to this feature." & vbCrLf & "Please check with your Group Adminisrator for assistance.", "Access Declined", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                txtEmployeeID.SelectAll()
+                txtEmployeeID.Focus()
+                Exit Sub
+            Else
+                Dim newCalibrationDate As DateTime = btnDate1.Value
+                Dim currentDate As Date = LastCalDate
+                Dim employeeID As String = txtEmployeeID.Text.Trim()
+
+                If newCalibrationDate.ToString("d") = currentDate.ToString("d") Then
+                    MessageBox.Show("This Feeder already calibrates on" & vbCrLf & "the same date as the new calibration date.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+
+                ' Press Confirm button to set the new calibration date
+                SQL.AddParam("@FeederID", txtFeederID.Text.Trim)
+                SQL.AddParam("@LastCalibrationDate", If(LastCalDate = Date.MinValue, DBNull.Value, LastCalDate))
+                SQL.AddParam("@CalibrationDate", newCalibrationDate)
+                SQL.AddParam("@EmployeeID", employeeID)
+                SQL.ExecQuery("INSERT INTO FeederCalHistory (FeederNumber, LastCalDate, LatestCalDate, Updater) VALUES (@FeederID, @LastCalibrationDate, @CalibrationDate, @EmployeeID)")
+                If SQL.HasException(True) Then Exit Sub
+
+                SQL.AddParam("@FeederID", txtFeederID.Text.Trim)
+                SQL.AddParam("@CalibrationDate", newCalibrationDate)
+                SQL.AddParam("@EmployeeID", employeeID)
+                SQL.ExecQuery("UPDATE FeederCalibration SET CalibrationDate = @CalibrationDate, Updater = @EmployeeID WHERE FeederNumber = @FeederID;")
+                If SQL.HasException(True) Then Exit Sub
+
+                pnlSection.Enabled = False
+                btnCancel.Enabled = False
+                lblColor.BackColor = Color.Transparent
+                lblLCalDate.BackColor = Color.Transparent
+                Clear()
+                txtFeederID.Enabled = True
+                txtFeederID.Clear()
+                txtFeederID.Focus()
+            End If
         End If
-
-        Dim newCalibrationDate As DateTime = btnDate1.Value
-        Dim currentDate As Date = LastCalDate
-        Dim employeeID As String = txtEmployeeID.Text.Trim()
-
-        If newCalibrationDate.ToString("d") = currentDate.ToString("d") Then
-            MessageBox.Show("This Feeder already calibrates on" & vbCrLf & "the same date as the new calibration date.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
-        End If
-
-        ' Press Confirm button to set the new calibration date
-        SQL.AddParam("@FeederID", txtFeederID.Text.Trim)
-        SQL.AddParam("@LastCalibrationDate", If(LastCalDate = Date.MinValue, DBNull.Value, LastCalDate))
-        SQL.AddParam("@CalibrationDate", newCalibrationDate)
-        SQL.AddParam("@EmployeeID", employeeID)
-        SQL.ExecQuery("INSERT INTO FeederCalHistory (FeederNumber, LastCalDate, LatestCalDate, Updater) VALUES (@FeederID, @LastCalibrationDate, @CalibrationDate, @EmployeeID)")
-        If SQL.HasException(True) Then Exit Sub
-
-        pnlSection.Enabled = False
-        btnCancel.Enabled = False
-        lblColor.BackColor = Color.Transparent
-        lblLCalDate.BackColor = Color.Transparent
-        Clear()
-        txtFeederID.Enabled = True
-        txtFeederID.Clear()
-        txtFeederID.Focus()
     End Sub
 End Class

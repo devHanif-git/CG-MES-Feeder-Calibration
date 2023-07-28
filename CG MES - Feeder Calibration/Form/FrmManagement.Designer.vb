@@ -53,6 +53,7 @@ Partial Class FrmManagement
         Me.btnBack = New Guna.UI2.WinForms.Guna2Button()
         Me.LblVer = New System.Windows.Forms.Label()
         Me.ImgHero = New System.Windows.Forms.PictureBox()
+        Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
         Me.Guna2Panel1.SuspendLayout()
         CType(Me.dgvFeeder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl1.SuspendLayout()
@@ -649,4 +650,5 @@ Partial Class FrmManagement
     Friend WithEvents btnConfirm As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnDelete As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnSearch As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2ShadowForm1 As Guna.UI2.WinForms.Guna2ShadowForm
 End Class

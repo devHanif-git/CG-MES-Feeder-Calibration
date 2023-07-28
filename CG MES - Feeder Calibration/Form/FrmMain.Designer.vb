@@ -34,7 +34,9 @@ Partial Class FrmMain
         Me.ctrlClose = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.ctrlMin = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
+        Me.BtnUserManage = New Guna.UI2.WinForms.Guna2Button()
         Me.ImgHero = New Guna.UI2.WinForms.Guna2PictureBox()
+        Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
         Me.Guna2Panel1.SuspendLayout()
         CType(Me.ImgHero, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -50,6 +52,7 @@ Partial Class FrmMain
         Me.BtnCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.BtnCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.BtnCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.BtnCheck.Enabled = False
         Me.BtnCheck.FillColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
         Me.BtnCheck.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold)
         Me.BtnCheck.ForeColor = System.Drawing.Color.White
@@ -75,13 +78,14 @@ Partial Class FrmMain
         Me.BtnCalibrate.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.BtnCalibrate.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.BtnCalibrate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.BtnCalibrate.Enabled = False
         Me.BtnCalibrate.FillColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
         Me.BtnCalibrate.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold)
         Me.BtnCalibrate.ForeColor = System.Drawing.Color.White
         Me.BtnCalibrate.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
         Me.BtnCalibrate.ImageOffset = New System.Drawing.Point(15, 0)
         Me.BtnCalibrate.ImageSize = New System.Drawing.Size(50, 50)
-        Me.BtnCalibrate.Location = New System.Drawing.Point(252, 327)
+        Me.BtnCalibrate.Location = New System.Drawing.Point(252, 322)
         Me.BtnCalibrate.Name = "BtnCalibrate"
         Me.BtnCalibrate.Size = New System.Drawing.Size(358, 65)
         Me.BtnCalibrate.TabIndex = 6
@@ -99,13 +103,14 @@ Partial Class FrmMain
         Me.BtnManage.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.BtnManage.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.BtnManage.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.BtnManage.Enabled = False
         Me.BtnManage.FillColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
         Me.BtnManage.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold)
         Me.BtnManage.ForeColor = System.Drawing.Color.White
         Me.BtnManage.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
         Me.BtnManage.ImageOffset = New System.Drawing.Point(15, 0)
         Me.BtnManage.ImageSize = New System.Drawing.Size(50, 50)
-        Me.BtnManage.Location = New System.Drawing.Point(252, 403)
+        Me.BtnManage.Location = New System.Drawing.Point(252, 393)
         Me.BtnManage.Name = "BtnManage"
         Me.BtnManage.Size = New System.Drawing.Size(358, 65)
         Me.BtnManage.TabIndex = 7
@@ -129,19 +134,19 @@ Partial Class FrmMain
         Me.BtnExit.HoverState.FillColor = System.Drawing.Color.Red
         Me.BtnExit.ImageOffset = New System.Drawing.Point(15, 0)
         Me.BtnExit.ImageSize = New System.Drawing.Size(50, 50)
-        Me.BtnExit.Location = New System.Drawing.Point(252, 479)
+        Me.BtnExit.Location = New System.Drawing.Point(252, 535)
         Me.BtnExit.Name = "BtnExit"
         Me.BtnExit.Size = New System.Drawing.Size(358, 65)
         Me.BtnExit.TabIndex = 8
-        Me.BtnExit.Text = "Exit"
-        Me.BtnExit.TextOffset = New System.Drawing.Point(-88, 0)
+        Me.BtnExit.Text = "Log Out"
+        Me.BtnExit.TextOffset = New System.Drawing.Point(-64, 0)
         '
         'LblVer
         '
         Me.LblVer.BackColor = System.Drawing.Color.Transparent
         Me.LblVer.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblVer.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.LblVer.Location = New System.Drawing.Point(269, 556)
+        Me.LblVer.Location = New System.Drawing.Point(269, 612)
         Me.LblVer.Name = "LblVer"
         Me.LblVer.Size = New System.Drawing.Size(288, 15)
         Me.LblVer.TabIndex = 74
@@ -194,6 +199,31 @@ Partial Class FrmMain
         Me.Guna2DragControl1.TargetControl = Me.Guna2Panel1
         Me.Guna2DragControl1.TransparentWhileDrag = False
         '
+        'BtnUserManage
+        '
+        Me.BtnUserManage.Animated = True
+        Me.BtnUserManage.BorderRadius = 10
+        Me.BtnUserManage.CustomImages.Image = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.team_management
+        Me.BtnUserManage.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.BtnUserManage.CustomImages.ImageSize = New System.Drawing.Size(45, 45)
+        Me.BtnUserManage.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.BtnUserManage.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.BtnUserManage.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.BtnUserManage.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.BtnUserManage.Enabled = False
+        Me.BtnUserManage.FillColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.BtnUserManage.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.BtnUserManage.ForeColor = System.Drawing.Color.White
+        Me.BtnUserManage.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
+        Me.BtnUserManage.ImageOffset = New System.Drawing.Point(15, 0)
+        Me.BtnUserManage.ImageSize = New System.Drawing.Size(50, 50)
+        Me.BtnUserManage.Location = New System.Drawing.Point(252, 464)
+        Me.BtnUserManage.Name = "BtnUserManage"
+        Me.BtnUserManage.Size = New System.Drawing.Size(358, 65)
+        Me.BtnUserManage.TabIndex = 76
+        Me.BtnUserManage.Text = "User Management"
+        Me.BtnUserManage.TextOffset = New System.Drawing.Point(-16, 0)
+        '
         'ImgHero
         '
         Me.ImgHero.Image = CType(resources.GetObject("ImgHero.Image"), System.Drawing.Image)
@@ -211,6 +241,7 @@ Partial Class FrmMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(47, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1164, 893)
+        Me.Controls.Add(Me.BtnUserManage)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.LblVer)
         Me.Controls.Add(Me.BtnExit)
@@ -239,4 +270,6 @@ Partial Class FrmMain
     Friend WithEvents ctrlClose As Guna.UI2.WinForms.Guna2ControlBox
     Friend WithEvents ctrlMin As Guna.UI2.WinForms.Guna2ControlBox
     Friend WithEvents Guna2DragControl1 As Guna.UI2.WinForms.Guna2DragControl
+    Friend WithEvents BtnUserManage As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2ShadowForm1 As Guna.UI2.WinForms.Guna2ShadowForm
 End Class

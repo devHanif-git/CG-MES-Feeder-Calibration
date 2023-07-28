@@ -2,7 +2,7 @@
 'Imports MySql.Data.MySqlClient
 
 Public Class SQLControl
-    Private DBCon As New SqlConnection("Data Source=192.168.1.32\MESDUMMY,1434;Initial Catalog=CGMES;User ID=sa;password=eLuQr3GghsMgqGj;Connection Timeout=30;")
+    Private DBCon As New SqlConnection("Data Source=192.168.1.100\CG_MES,1433;Initial Catalog=CG_FEEDER;User ID=sa;password=CG!Charlie@Bravo;Connection Timeout=3;")
     Private DBCmd As SqlCommand
 
     ' DB DATA

@@ -1,8 +1,29 @@
 ﻿Public Class FrmMain
+    Public Shared UserLevel As Integer
+    Public Shared UserGroup As String
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Guna2ShadowForm1.SetShadowForm(Me)
         ResizAndCenter()
 
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
+
+        If (UserGroup = "System Admin" Or UserGroup = "SMT Feeder" Or UserGroup = "IT") And (UserLevel = 3 Or UserLevel = 2) Then
+            BtnCheck.Enabled = True
+            BtnCalibrate.Enabled = True
+            BtnManage.Enabled = True
+            BtnUserManage.Enabled = True
+        ElseIf UserGroup = "SMT Feeder" And UserLevel = 1 Then
+            BtnCheck.Enabled = True
+            BtnCalibrate.Enabled = True
+            BtnManage.Enabled = False
+            BtnUserManage.Enabled = False
+        Else
+            BtnCheck.Enabled = False
+            BtnCalibrate.Enabled = False
+            BtnManage.Enabled = False
+            BtnUserManage.Enabled = False
+        End If
+
         Me.Show()
     End Sub
 
@@ -19,6 +40,7 @@
         BtnCalibrate.Left = (BtnCalibrate.Parent.Width \ 2) - (BtnCalibrate.Width \ 2)
 
         BtnManage.Left = (BtnManage.Parent.Width \ 2) - (BtnManage.Width \ 2)
+        BtnUserManage.Left = (BtnUserManage.Parent.Width \ 2) - (BtnUserManage.Width \ 2)
 
         BtnExit.Left = (BtnExit.Parent.Width \ 2) - (BtnExit.Width \ 2)
     End Sub
@@ -29,7 +51,8 @@
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click
-        Application.Exit()
+        Me.Close()
+        FrmLogin.Show()
     End Sub
 
     Private Sub BtnCalibrate_Click(sender As Object, e As EventArgs) Handles BtnCalibrate.Click
@@ -40,5 +63,15 @@
     Private Sub BtnManage_Click(sender As Object, e As EventArgs) Handles BtnManage.Click
         Me.Hide()
         FrmManagement.Show()
+    End Sub
+
+    Private Sub FrmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Me.Hide()
+        FrmLogin.Show()
+    End Sub
+
+    Private Sub BtnUserManage_Click(sender As Object, e As EventArgs) Handles BtnUserManage.Click
+        Me.Hide()
+        FrmUserManage.Show()
     End Sub
 End Class

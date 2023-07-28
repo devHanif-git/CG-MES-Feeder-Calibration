@@ -31,6 +31,7 @@ Partial Class FrmSeachSimple
         Me.txtFeederID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.btnClose = New Guna.UI2.WinForms.Guna2Button()
         Me.btnSearch = New Guna.UI2.WinForms.Guna2Button()
+        Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
         Me.Guna2Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -95,7 +96,7 @@ Partial Class FrmSeachSimple
         Me.txtFeederID.PlaceholderText = "Feeder ID"
         Me.txtFeederID.SelectedText = ""
         Me.txtFeederID.Size = New System.Drawing.Size(312, 35)
-        Me.txtFeederID.TabIndex = 80
+        Me.txtFeederID.TabIndex = 1
         '
         'btnClose
         '
@@ -173,4 +174,5 @@ Partial Class FrmSeachSimple
     Friend WithEvents txtFeederID As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents btnClose As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnSearch As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2ShadowForm1 As Guna.UI2.WinForms.Guna2ShadowForm
 End Class

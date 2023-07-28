@@ -49,6 +49,7 @@ Partial Class FrmFeederCal
         Me.btnBack = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlAtas = New System.Windows.Forms.Panel()
+        Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
         Me.Guna2Panel1.SuspendLayout()
         Me.pnlSection.SuspendLayout()
         Me.pnlCal.SuspendLayout()
@@ -482,4 +483,5 @@ Partial Class FrmFeederCal
     Friend WithEvents pnlAll As Panel
     Friend WithEvents pnlAtas As Panel
     Friend WithEvents btnCancel As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2ShadowForm1 As Guna.UI2.WinForms.Guna2ShadowForm
 End Class

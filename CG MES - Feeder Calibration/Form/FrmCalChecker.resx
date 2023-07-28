@@ -133,6 +133,61 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1164, 893</value>
   </data>
+  <data name="btnLastCal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt, style=Bold</value>
+  </data>
+  <data name="btnLastCal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 505</value>
+  </data>
+  <data name="btnLastCal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 65</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnLastCal.TabIndex" type="System.Int32, mscorlib">
+    <value>84</value>
+  </data>
+  <data name="btnLastCal.Text" xml:space="preserve">
+    <value>Next Calibration Date: N/A</value>
+  </data>
+  <data name="&gt;&gt;btnLastCal.Name" xml:space="preserve">
+    <value>btnLastCal</value>
+  </data>
+  <data name="&gt;&gt;btnLastCal.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Button, Guna.UI2, Version=2.0.4.4, Culture=neutral, PublicKeyToken=8b9d14aa5142e261</value>
+  </data>
+  <data name="&gt;&gt;btnLastCal.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnLastCal.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnCheckAll.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt, style=Bold</value>
+  </data>
+  <data name="btnCheckAll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 576</value>
+  </data>
+  <data name="btnCheckAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 65</value>
+  </data>
+  <data name="btnCheckAll.TabIndex" type="System.Int32, mscorlib">
+    <value>83</value>
+  </data>
+  <data name="btnCheckAll.Text" xml:space="preserve">
+    <value>List All The Feeders That Need Calibration.</value>
+  </data>
+  <data name="&gt;&gt;btnCheckAll.Name" xml:space="preserve">
+    <value>btnCheckAll</value>
+  </data>
+  <data name="&gt;&gt;btnCheckAll.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2Button, Guna.UI2, Version=2.0.4.4, Culture=neutral, PublicKeyToken=8b9d14aa5142e261</value>
+  </data>
+  <data name="&gt;&gt;btnCheckAll.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnCheckAll.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="ImgHero.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAE38AAAYLCAYAAAACysU0AAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
@@ -2397,7 +2452,6 @@
   <data name="ImgHero.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ImgHero.TabIndex" type="System.Int32, mscorlib">
     <value>82</value>
   </data>
@@ -2411,13 +2465,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ImgHero.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="btnBack.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 15.75pt, style=Bold</value>
   </data>
   <data name="btnBack.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 505</value>
+    <value>222, 647</value>
   </data>
   <data name="btnBack.Size" type="System.Drawing.Size, System.Drawing">
     <value>350, 65</value>
@@ -2438,7 +2492,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnBack.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="btnCheck.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 15.75pt, style=Bold</value>
@@ -2465,7 +2519,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCheck.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="txtFeederID.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 12pt, style=Bold</value>
@@ -2492,7 +2546,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtFeederID.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="LblVer.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
@@ -2525,7 +2579,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;LblVer.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="ctrlClose.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -2597,7 +2651,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Guna2Panel1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4600,6 +4654,9 @@
         AQAAgAEAAMABAADgAwAA+AMAAA==
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
@@ -4618,6 +4675,12 @@
   <data name="&gt;&gt;Guna2DragControl1.Type" xml:space="preserve">
     <value>Guna.UI2.WinForms.Guna2DragControl, Guna.UI2, Version=2.0.4.4, Culture=neutral, PublicKeyToken=8b9d14aa5142e261</value>
   </data>
+  <data name="&gt;&gt;Guna2ShadowForm1.Name" xml:space="preserve">
+    <value>Guna2ShadowForm1</value>
+  </data>
+  <data name="&gt;&gt;Guna2ShadowForm1.Type" xml:space="preserve">
+    <value>Guna.UI2.WinForms.Guna2ShadowForm, Guna.UI2, Version=2.0.4.4, Culture=neutral, PublicKeyToken=8b9d14aa5142e261</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FrmCalChecker</value>
   </data>
@@ -4626,5 +4689,8 @@
   </data>
   <metadata name="Guna2DragControl1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>142, 17</value>
+  </metadata>
+  <metadata name="Guna2ShadowForm1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>303, 17</value>
   </metadata>
 </root>

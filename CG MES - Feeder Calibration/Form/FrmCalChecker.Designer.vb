@@ -32,6 +32,9 @@ Partial Class FrmCalChecker
         Me.LblVer = New System.Windows.Forms.Label()
         Me.btnCheck = New Guna.UI2.WinForms.Guna2Button()
         Me.btnBack = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnCheckAll = New Guna.UI2.WinForms.Guna2Button()
+        Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
+        Me.btnLastCal = New Guna.UI2.WinForms.Guna2Button()
         Me.ImgHero = New System.Windows.Forms.PictureBox()
         Me.txtFeederID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Guna2Panel1.SuspendLayout()
@@ -88,7 +91,7 @@ Partial Class FrmCalChecker
         Me.btnCheck.BorderRadius = 10
         Me.btnCheck.CustomImages.Image = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.standby__1_
         Me.btnCheck.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.btnCheck.CustomImages.ImageOffset = New System.Drawing.Point(0, -15)
+        Me.btnCheck.CustomImages.ImageOffset = New System.Drawing.Point(0, -35)
         Me.btnCheck.CustomImages.ImageSize = New System.Drawing.Size(50, 50)
         Me.btnCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
@@ -121,6 +124,47 @@ Partial Class FrmCalChecker
         Me.btnBack.ImageSize = New System.Drawing.Size(50, 50)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.TextOffset = New System.Drawing.Point(-80, 0)
+        '
+        'btnCheckAll
+        '
+        Me.btnCheckAll.Animated = True
+        Me.btnCheckAll.BorderRadius = 10
+        Me.btnCheckAll.CustomImages.Image = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.checklist
+        Me.btnCheckAll.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnCheckAll.CustomImages.ImageSize = New System.Drawing.Size(45, 45)
+        Me.btnCheckAll.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnCheckAll.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnCheckAll.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnCheckAll.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnCheckAll.FillColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(247, Byte), Integer))
+        resources.ApplyResources(Me.btnCheckAll, "btnCheckAll")
+        Me.btnCheckAll.ForeColor = System.Drawing.Color.White
+        Me.btnCheckAll.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(237, Byte), Integer))
+        Me.btnCheckAll.ImageOffset = New System.Drawing.Point(15, 0)
+        Me.btnCheckAll.ImageSize = New System.Drawing.Size(50, 50)
+        Me.btnCheckAll.Name = "btnCheckAll"
+        Me.btnCheckAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnCheckAll.TextOffset = New System.Drawing.Point(55, 0)
+        '
+        'btnLastCal
+        '
+        Me.btnLastCal.Animated = True
+        Me.btnLastCal.BorderRadius = 10
+        Me.btnLastCal.CustomImages.Image = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.clockye
+        Me.btnLastCal.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnLastCal.CustomImages.ImageSize = New System.Drawing.Size(45, 45)
+        Me.btnLastCal.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnLastCal.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnLastCal.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnLastCal.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnLastCal.FillColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(99, Byte), Integer))
+        resources.ApplyResources(Me.btnLastCal, "btnLastCal")
+        Me.btnLastCal.ForeColor = System.Drawing.Color.White
+        Me.btnLastCal.ImageOffset = New System.Drawing.Point(15, 0)
+        Me.btnLastCal.ImageSize = New System.Drawing.Size(50, 50)
+        Me.btnLastCal.Name = "btnLastCal"
+        Me.btnLastCal.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnLastCal.TextOffset = New System.Drawing.Point(55, 0)
         '
         'ImgHero
         '
@@ -159,6 +203,8 @@ Partial Class FrmCalChecker
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(47, Byte), Integer))
+        Me.Controls.Add(Me.btnLastCal)
+        Me.Controls.Add(Me.btnCheckAll)
         Me.Controls.Add(Me.ImgHero)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.btnCheck)
@@ -183,4 +229,7 @@ Partial Class FrmCalChecker
     Friend WithEvents btnCheck As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnBack As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents ImgHero As PictureBox
+    Friend WithEvents btnCheckAll As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2ShadowForm1 As Guna.UI2.WinForms.Guna2ShadowForm
+    Friend WithEvents btnLastCal As Guna.UI2.WinForms.Guna2Button
 End Class

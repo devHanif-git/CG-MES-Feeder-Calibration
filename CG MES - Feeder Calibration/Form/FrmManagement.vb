@@ -7,16 +7,14 @@
     Dim oldColor As String
     Dim oldStts As String
     Private Sub FrmManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'FrmSearch.Show()
-        FrmSeachSimple.Show()
+        Guna2ShadowForm1.SetShadowForm(Me)
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
         ResizeAndCenter()
         SetupDGV()
         LoadDatatoDGV()
+
         Me.Show()
         dgvFeeder.Focus()
-        'FrmSearch.Hide()
-        FrmSeachSimple.Hide()
     End Sub
 
     Private Sub FrmManagement_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -28,9 +26,6 @@
 
         ImgHero.Left = (ImgHero.Parent.Width \ 2) - (ImgHero.Width \ 2)
         'ImgHero.Top = (ImgHero.Parent.Height \ 2) - (ImgHero.Height \ 2) + 10
-        btnBack.Left = (btnBack.Parent.Width \ 2) - (btnBack.Width \ 2)
-        lblDetails.Left = (lblDetails.Parent.Width \ 2) - (lblDetails.Width \ 2)
-
     End Sub
 
     Private Sub SetupDGV()
@@ -203,109 +198,133 @@
             txtEmployeeID.Focus()
             txtEmployeeID.SelectAll()
             Exit Sub
-        End If
+        Else
+            SQL.AddParam("@UID", txtEmployeeID.Text.Trim)
+            SQL.ExecQuery("SELECT * FROM Users WHERE UserID = @UID")
+            If SQL.HasException(True) Then Exit Sub
 
-        If selection = 1 Then
-            If txtFeederID.Text = "" Then
-                MessageBox.Show("The Feeder ID information is required.", "Feeder ID", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                txtFeederID.Focus()
-            ElseIf cbxType.SelectedIndex = 0 Then
-                MessageBox.Show("The Feeder Type information is required.", "Feeder Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                cbxType.Focus()
-                cbxType.DroppedDown = True
-            ElseIf cbxSize.SelectedIndex = 0 Then
-                MessageBox.Show("The Feeder Size information is required.", "Feeder Size", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                cbxSize.Focus()
-                cbxSize.DroppedDown = True
-            ElseIf cbxColor.SelectedIndex = 0 Then
-                MessageBox.Show("The Feeder Colour information is required.", "Feeder Colour", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                cbxColor.Focus()
-                cbxColor.DroppedDown = True
-            ElseIf txtEmployeeID.Text = "" Then
-                MessageBox.Show("Incorrect Empolyee ID. Please try again.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                txtEmployeeID.Focus()
-            Else
-                Dim chkdup As Boolean = Not CheckDupID(txtFeederID.Text.Trim)
-                If chkdup Then
-                    Dim stts As Boolean = If(cbxStatus.SelectedItem.ToString() = "GOOD", True, False)
-
-                    SQL.AddParam("@id", txtFeederID.Text.Trim)
-                    SQL.AddParam("@type", cbxType.Text.Trim)
-                    SQL.AddParam("@size", cbxSize.Text.Trim)
-                    SQL.AddParam("@color", cbxColor.Text.Trim)
-                    SQL.AddParam("@status", stts)
-                    SQL.AddParam("@uid", txtEmployeeID.Text.Trim)
-
-                    SQL.ExecQuery("INSERT INTO FeederManagement (FeederNumber, FeederType, FGearSize, FColorCode, FStatus, UpdateTime, Updater) VALUES(@id, @type, @size, @color, @status, GETDATE(), @uid);")
-                    If SQL.HasException(True) Then Exit Sub
-
-                    MessageBox.Show("Feeder ID '" + txtFeederID.Text + "' has been added.", "Feeder Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                    dgvFeeder.Enabled = True
-                    oldID = txtFeederID.Text.Trim
-                    LoadDatatoDGV()
-
-                    DisableInput()
-                    btnConfirm.Enabled = False
-                    btnCreate.Enabled = True
-                    btnUpdate.Enabled = True
-                    btnDelete.Enabled = True
-                    Highlight(oldID)
+            If SQL.RecordCount > 0 Then
+                If SQL.DBDT.Rows(0)("UserGroup") <> "SMT Feeder" Or SQL.DBDT.Rows(0)("UserGroup") <> "SMT" Or SQL.DBDT.Rows(0)("UserGroup") <> "System Admin" Then
+                    MessageBox.Show("You do not have access to this feature." & vbCrLf & "Please check with your Group Adminisrator for assistance.", "Access Declined", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    txtEmployeeID.SelectAll()
+                    txtEmployeeID.Focus()
+                    Exit Sub
                 Else
-                    MessageBox.Show("Feeder ID '" + txtFeederID.Text + "' already exists in the database.", "Duplicate Feeder ID", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                    txtFeederID.Focus()
-                    txtFeederID.SelectAll()
+                    If selection = 1 Then
+                        If txtFeederID.Text = "" Then
+                            MessageBox.Show("The Feeder ID information is required.", "Feeder ID", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            txtFeederID.Focus()
+                        ElseIf cbxType.SelectedIndex = 0 Then
+                            MessageBox.Show("The Feeder Type information is required.", "Feeder Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            cbxType.Focus()
+                            cbxType.DroppedDown = True
+                        ElseIf cbxSize.SelectedIndex = 0 Then
+                            MessageBox.Show("The Feeder Size information is required.", "Feeder Size", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            cbxSize.Focus()
+                            cbxSize.DroppedDown = True
+                        ElseIf cbxColor.SelectedIndex = 0 Then
+                            MessageBox.Show("The Feeder Colour information is required.", "Feeder Colour", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            cbxColor.Focus()
+                            cbxColor.DroppedDown = True
+                        ElseIf txtEmployeeID.Text = "" Then
+                            MessageBox.Show("Incorrect Empolyee ID. Please try again.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            txtEmployeeID.Focus()
+                        Else
+                            Dim chkdup As Boolean = Not CheckDupID(txtFeederID.Text.Trim)
+                            If chkdup Then
+                                Dim stts As Boolean = If(cbxStatus.SelectedItem.ToString() = "GOOD", True, False)
+
+                                SQL.AddParam("@id", txtFeederID.Text.Trim)
+                                SQL.AddParam("@type", cbxType.Text.Trim)
+                                SQL.AddParam("@size", cbxSize.Text.Trim)
+                                SQL.AddParam("@color", cbxColor.Text.Trim)
+                                SQL.AddParam("@status", stts)
+                                SQL.AddParam("@uid", txtEmployeeID.Text.Trim)
+
+
+                                SQL.ExecQuery("INSERT INTO FeederManagement (FeederNumber, FeederType, FGearSize, FColorCode, FStatus, UpdateTime, Updater) VALUES(@id, @type, @size, @color, @status, GETDATE(), @uid);")
+                                If SQL.HasException(True) Then Exit Sub
+
+                                SQL.AddParam("@id", txtFeederID.Text.Trim)
+                                SQL.AddParam("@null", DBNull.Value)
+                                SQL.AddParam("@uid", txtEmployeeID.Text.Trim)
+                                SQL.ExecQuery("INSERT INTO FeederCalibration (FeederNumber, CalibrationDate, Updater) VALUES(@id, @null, @uid);")
+                                If SQL.HasException(True) Then Exit Sub
+
+                                MessageBox.Show("Feeder ID '" + txtFeederID.Text + "' has been added.", "Feeder Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                                dgvFeeder.Enabled = True
+                                oldID = txtFeederID.Text.Trim
+                                LoadDatatoDGV()
+
+                                DisableInput()
+                                btnConfirm.Enabled = False
+                                btnCreate.Enabled = True
+                                btnUpdate.Enabled = True
+                                btnDelete.Enabled = True
+                                Highlight(oldID)
+                            Else
+                                MessageBox.Show("Feeder ID '" + txtFeederID.Text + "' already exists in the database.", "Duplicate Feeder ID", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                txtFeederID.Focus()
+                                txtFeederID.SelectAll()
+                            End If
+                        End If
+                    ElseIf selection = 2 Then
+                        If txtFeederID.Text = "" Then
+                            MessageBox.Show("The Feeder ID information is required.", "Feeder ID", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            txtFeederID.Focus()
+                        ElseIf oldType = cbxType.Text.Trim And oldSize = cbxSize.Text.Trim And oldColor = cbxColor.Text.Trim And oldStts = cbxStatus.Text.Trim Then
+                            MessageBox.Show("No changes were made to the Feeder information." & vbCrLf & "Updating is not required.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            cbxType.DroppedDown = True
+                        ElseIf cbxType.SelectedIndex = 0 Then
+                            MessageBox.Show("The Feeder Type information is required.", "Feeder Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            cbxType.Focus()
+                            cbxType.DroppedDown = True
+                        ElseIf cbxSize.SelectedIndex = 0 Then
+                            MessageBox.Show("The Feeder Size information is required.", "Feeder Size", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            cbxSize.Focus()
+                            cbxSize.DroppedDown = True
+                        ElseIf cbxColor.SelectedIndex = 0 Then
+                            MessageBox.Show("The Feeder Colour information is required.", "Feeder Colour", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            cbxColor.Focus()
+                            cbxColor.DroppedDown = True
+                        ElseIf txtEmployeeID.Text = "" Then
+                            MessageBox.Show("Incorrect Empolyee ID. Please try again.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            txtEmployeeID.Focus()
+                        Else
+                            Dim stts As Boolean = If(cbxStatus.SelectedItem.ToString() = "GOOD", True, False)
+
+                            SQL.AddParam("@id", txtFeederID.Text.Trim)
+                            SQL.AddParam("@type", cbxType.Text.Trim)
+                            SQL.AddParam("@size", cbxSize.Text.Trim)
+                            SQL.AddParam("@color", cbxColor.Text.Trim)
+                            SQL.AddParam("@status", stts)
+                            SQL.AddParam("@uid", txtEmployeeID.Text.Trim)
+
+                            SQL.ExecQuery("UPDATE FeederManagement SET FeederType = @type, FGearSize = @size, FColorCode = @color, FStatus = @status, UpdateTime = GETDATE(), Updater = @uid WHERE FeederNumber = @id;")
+                            If SQL.HasException(True) Then Exit Sub
+
+                            MessageBox.Show("Feeder ID '" + txtFeederID.Text + "' has been updated.", "Feeder Updated", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                            dgvFeeder.Enabled = True
+                            oldID = txtFeederID.Text.Trim
+
+                            LoadDatatoDGV()
+
+                            DisableInput()
+
+                            btnConfirm.Enabled = False
+                            btnCreate.Enabled = True
+                            btnUpdate.Enabled = True
+                            btnDelete.Enabled = True
+                            Highlight(oldID)
+                        End If
+                    End If
                 End If
-            End If
-        ElseIf selection = 2 Then
-            If txtFeederID.Text = "" Then
-                MessageBox.Show("The Feeder ID information is required.", "Feeder ID", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                txtFeederID.Focus()
-            ElseIf oldType = cbxType.Text.Trim And oldSize = cbxSize.Text.Trim And oldColor = cbxColor.Text.Trim And oldStts = cbxStatus.Text.Trim Then
-                MessageBox.Show("No changes were made to the Feeder information." & vbCrLf & "Updating is not required.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                cbxType.DroppedDown = True
-            ElseIf cbxType.SelectedIndex = 0 Then
-                MessageBox.Show("The Feeder Type information is required.", "Feeder Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                cbxType.Focus()
-                cbxType.DroppedDown = True
-            ElseIf cbxSize.SelectedIndex = 0 Then
-                MessageBox.Show("The Feeder Size information is required.", "Feeder Size", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                cbxSize.Focus()
-                cbxSize.DroppedDown = True
-            ElseIf cbxColor.SelectedIndex = 0 Then
-                MessageBox.Show("The Feeder Colour information is required.", "Feeder Colour", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                cbxColor.Focus()
-                cbxColor.DroppedDown = True
-            ElseIf txtEmployeeID.Text = "" Then
+            Else
                 MessageBox.Show("Incorrect Empolyee ID. Please try again.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 txtEmployeeID.Focus()
-            Else
-                Dim stts As Boolean = If(cbxStatus.SelectedItem.ToString() = "GOOD", True, False)
-
-                SQL.AddParam("@id", txtFeederID.Text.Trim)
-                SQL.AddParam("@type", cbxType.Text.Trim)
-                SQL.AddParam("@size", cbxSize.Text.Trim)
-                SQL.AddParam("@color", cbxColor.Text.Trim)
-                SQL.AddParam("@status", stts)
-                SQL.AddParam("@uid", txtEmployeeID.Text.Trim)
-
-                SQL.ExecQuery("UPDATE FeederManagement SET FeederType = @type, FGearSize = @size, FColorCode = @color, FStatus = @status, UpdateTime = GETDATE(), Updater = @uid WHERE FeederNumber = @id;")
-                If SQL.HasException(True) Then Exit Sub
-
-                MessageBox.Show("Feeder ID '" + txtFeederID.Text + "' has been updated.", "Feeder Updated", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                dgvFeeder.Enabled = True
-                oldID = txtFeederID.Text.Trim
-
-                LoadDatatoDGV()
-
-                DisableInput()
-
-                btnConfirm.Enabled = False
-                btnCreate.Enabled = True
-                btnUpdate.Enabled = True
-                btnDelete.Enabled = True
-                Highlight(oldID)
+                txtEmployeeID.SelectAll()
             End If
         End If
     End Sub
@@ -318,6 +337,10 @@
             If MessageBox.Show("Confirm to delete below feeder details?" & vbCrLf & vbCrLf & "Feeder ID: " & dgvFeeder.SelectedRows(0).Cells("Feeder ID").Value & vbCrLf & "Feeder Type: " & dgvFeeder.SelectedRows(0).Cells("Feeder Type").Value & vbCrLf & "Gear Size: " & dgvFeeder.SelectedRows(0).Cells("Gear Size").Value & vbCrLf & "Colour Code: " & dgvFeeder.SelectedRows(0).Cells("Colour Code").Value, "Delete Feeder Details", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
                 SQL.AddParam("@id", txtFeederID.Text)
                 SQL.ExecQuery("DELETE FROM FeederManagement WHERE FeederNumber = @id")
+                If SQL.HasException(True) Then Exit Sub
+
+                SQL.AddParam("@id", txtFeederID.Text)
+                SQL.ExecQuery("DELETE FROM FeederCalibration WHERE FeederNumber = @id")
                 If SQL.HasException(True) Then Exit Sub
 
                 LoadDatatoDGV()
@@ -360,7 +383,8 @@
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        'FrmSearch.ShowDialog()
+        FrmSeachSimple.selection = 1
+        FrmSeachSimple.txtFeederID.Focus()
         FrmSeachSimple.ShowDialog()
     End Sub
 

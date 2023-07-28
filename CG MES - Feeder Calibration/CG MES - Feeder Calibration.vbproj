@@ -108,6 +108,12 @@
     <Compile Include="Form\FrmCalChecker.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FrmCheckAll.Designer.vb">
+      <DependentUpon>FrmCheckAll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmCheckAll.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FrmFeederCal.Designer.vb">
       <DependentUpon>FrmFeederCal.vb</DependentUpon>
     </Compile>
@@ -118,6 +124,12 @@
       <DependentUpon>FrmLoading.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\FrmLoading.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmLogin.Designer.vb">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\FrmMain.vb">
@@ -145,6 +157,13 @@
     <Compile Include="Form\FrmSearch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FrmUserManage.Designer.vb">
+      <DependentUpon>FrmUserManage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmUserManage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FuncEncDec.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -167,11 +186,17 @@
     <EmbeddedResource Include="Form\FrmCalChecker.resx">
       <DependentUpon>FrmCalChecker.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmCheckAll.resx">
+      <DependentUpon>FrmCheckAll.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmFeederCal.resx">
       <DependentUpon>FrmFeederCal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmLoading.resx">
       <DependentUpon>FrmLoading.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmLogin.resx">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
@@ -184,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmSearch.resx">
       <DependentUpon>FrmSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmUserManage.resx">
+      <DependentUpon>FrmUserManage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -225,6 +253,15 @@
     <None Include="Resources\clock.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\clockye.png" />
+    <None Include="Resources\padlock %281%29.png" />
+    <None Include="Resources\padlock.png" />
+    <None Include="Resources\id-card.png" />
+    <None Include="Resources\email.png" />
+    <None Include="Resources\checklist.png" />
+    <None Include="Resources\team-management.png" />
+    <None Include="Resources\Rolling.gif" />
+    <None Include="Resources\layered-waves-haikei %282%29.png" />
     <None Include="Resources\magnifying-glass.png" />
     <None Include="Resources\cancelled.png" />
     <None Include="Resources\edit.png" />
