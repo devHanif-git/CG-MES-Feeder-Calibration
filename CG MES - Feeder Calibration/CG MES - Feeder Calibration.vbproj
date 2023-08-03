@@ -145,6 +145,12 @@
     <Compile Include="Form\FrmManagement.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FrmNoGoodMsg.Designer.vb">
+      <DependentUpon>FrmNoGoodMsg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmNoGoodMsg.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FrmSeachSimple.Designer.vb">
       <DependentUpon>FrmSeachSimple.vb</DependentUpon>
     </Compile>
@@ -204,6 +210,9 @@
     <EmbeddedResource Include="Form\FrmManagement.resx">
       <DependentUpon>FrmManagement.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmNoGoodMsg.resx">
+      <DependentUpon>FrmNoGoodMsg.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmSeachSimple.resx">
       <DependentUpon>FrmSeachSimple.vb</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +262,7 @@
     <None Include="Resources\clock.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\comments.png" />
     <None Include="Resources\clockye.png" />
     <None Include="Resources\padlock %281%29.png" />
     <None Include="Resources\padlock.png" />

@@ -37,6 +37,7 @@
         SQL.AddParam("@FID", txtFeederID.Text.Trim)
         SQL.ExecQuery("SELECT
                   FeederManagement.FStatus,
+                  FeederManagement.MsgBox,
                   FeederCalibration.CalibrationDate
               FROM
                   FeederManagement
@@ -106,9 +107,9 @@
 
                 btnCheck.TextOffset = New Point(0, 30)
                 btnCheck.Text = "This feeder is defective; please take note! This feeder is awaiting repair!"
-
                 btnLastCal.FillColor = Color.FromArgb(186, 25, 27)
                 btnLastCal.Text = "Next Calibration Date: N/A"
+                MessageBox.Show(SQL.DBDT.Rows(0)("MsgBox"), "No Good Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
         Else
             btnCheck.FillColor = Color.FromArgb(186, 25, 27)

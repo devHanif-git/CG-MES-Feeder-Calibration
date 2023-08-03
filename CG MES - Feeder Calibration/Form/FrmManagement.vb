@@ -6,6 +6,7 @@
     Dim oldSize As String
     Dim oldColor As String
     Dim oldStts As String
+    Public Shared noGoodMsg As String
     Private Sub FrmManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
@@ -234,15 +235,21 @@
                             If chkdup Then
                                 Dim stts As Boolean = If(cbxStatus.SelectedItem.ToString() = "GOOD", True, False)
 
+                                If Not stts Then
+                                    FrmNoGoodMsg.ShowDialog()
+                                Else
+                                    noGoodMsg = ""
+                                End If
+
                                 SQL.AddParam("@id", txtFeederID.Text.Trim)
                                 SQL.AddParam("@type", cbxType.Text.Trim)
                                 SQL.AddParam("@size", cbxSize.Text.Trim)
                                 SQL.AddParam("@color", cbxColor.Text.Trim)
                                 SQL.AddParam("@status", stts)
                                 SQL.AddParam("@uid", txtEmployeeID.Text.Trim)
+                                SQL.AddParam("@noGoodMsg", noGoodMsg)
 
-
-                                SQL.ExecQuery("INSERT INTO FeederManagement (FeederNumber, FeederType, FGearSize, FColorCode, FStatus, UpdateTime, Updater) VALUES(@id, @type, @size, @color, @status, GETDATE(), @uid);")
+                                SQL.ExecQuery("INSERT INTO FeederManagement (FeederNumber, FeederType, FGearSize, FColorCode, FStatus, UpdateTime, Updater, MsgBox) VALUES(@id, @type, @size, @color, @status, GETDATE(), @uid, @noGoodMsg);")
                                 If SQL.HasException(True) Then Exit Sub
 
                                 SQL.AddParam("@id", txtFeederID.Text.Trim)
@@ -294,14 +301,21 @@
                         Else
                             Dim stts As Boolean = If(cbxStatus.SelectedItem.ToString() = "GOOD", True, False)
 
+                            If Not stts Then
+                                FrmNoGoodMsg.ShowDialog()
+                            Else
+                                noGoodMsg = ""
+                            End If
+
                             SQL.AddParam("@id", txtFeederID.Text.Trim)
                             SQL.AddParam("@type", cbxType.Text.Trim)
                             SQL.AddParam("@size", cbxSize.Text.Trim)
                             SQL.AddParam("@color", cbxColor.Text.Trim)
                             SQL.AddParam("@status", stts)
                             SQL.AddParam("@uid", txtEmployeeID.Text.Trim)
+                            SQL.AddParam("@noGoodMsg", noGoodMsg)
 
-                            SQL.ExecQuery("UPDATE FeederManagement SET FeederType = @type, FGearSize = @size, FColorCode = @color, FStatus = @status, UpdateTime = GETDATE(), Updater = @uid WHERE FeederNumber = @id;")
+                            SQL.ExecQuery("UPDATE FeederManagement SET FeederType = @type, FGearSize = @size, FColorCode = @color, FStatus = @status, UpdateTime = GETDATE(), Updater = @uid, MsgBox = @noGoodMsg WHERE FeederNumber = @id;")
                             If SQL.HasException(True) Then Exit Sub
 
                             MessageBox.Show("Feeder ID '" + txtFeederID.Text + "' has been updated.", "Feeder Updated", MessageBoxButtons.OK, MessageBoxIcon.Information)

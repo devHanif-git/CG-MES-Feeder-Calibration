@@ -838,6 +838,7 @@ Partial Class FrmLogin
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Transition.SetDecoration(Me, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CG Global Profastex Manufacturing (MES) - Login"
