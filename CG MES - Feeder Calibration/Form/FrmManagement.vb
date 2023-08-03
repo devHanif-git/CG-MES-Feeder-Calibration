@@ -204,7 +204,7 @@
             If SQL.HasException(True) Then Exit Sub
 
             If SQL.RecordCount > 0 Then
-                If SQL.DBDT.Rows(0)("UserGroup") <> "SMT Feeder" Or SQL.DBDT.Rows(0)("UserGroup") <> "SMT" Or SQL.DBDT.Rows(0)("UserGroup") <> "System Admin" Then
+                If Not (SQL.DBDT.Rows(0)("UserGroup") = "SMT Feeder" Or SQL.DBDT.Rows(0)("UserGroup") = "SMT" Or SQL.DBDT.Rows(0)("UserGroup") = "System Admin") Then
                     MessageBox.Show("You do not have access to this feature." & vbCrLf & "Please check with your Group Adminisrator for assistance.", "Access Declined", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     txtEmployeeID.SelectAll()
                     txtEmployeeID.Focus()
