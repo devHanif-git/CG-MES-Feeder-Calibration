@@ -114,16 +114,22 @@
     <Compile Include="Form\FrmCheckAll.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FrmCheckAllA.Designer.vb">
+      <DependentUpon>FrmCheckAllA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmCheckAllA.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FrmFeederCal.Designer.vb">
       <DependentUpon>FrmFeederCal.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\FrmFeederCal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmLoading.Designer.vb">
-      <DependentUpon>FrmLoading.vb</DependentUpon>
+    <Compile Include="Form\FrmFeederLog.Designer.vb">
+      <DependentUpon>FrmFeederLog.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\FrmLoading.vb">
+    <Compile Include="Form\FrmFeederLog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\FrmLogin.Designer.vb">
@@ -163,6 +169,12 @@
     <Compile Include="Form\FrmSearch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FrmUserLog.Designer.vb">
+      <DependentUpon>FrmUserLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmUserLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FrmUserManage.Designer.vb">
       <DependentUpon>FrmUserManage.vb</DependentUpon>
     </Compile>
@@ -187,6 +199,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SQLControl.vb" />
+    <Compile Include="SQLUserLog.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form\FrmCalChecker.resx">
@@ -195,11 +208,14 @@
     <EmbeddedResource Include="Form\FrmCheckAll.resx">
       <DependentUpon>FrmCheckAll.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmCheckAllA.resx">
+      <DependentUpon>FrmCheckAllA.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmFeederCal.resx">
       <DependentUpon>FrmFeederCal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FrmLoading.resx">
-      <DependentUpon>FrmLoading.vb</DependentUpon>
+    <EmbeddedResource Include="Form\FrmFeederLog.resx">
+      <DependentUpon>FrmFeederLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmLogin.resx">
       <DependentUpon>FrmLogin.vb</DependentUpon>
@@ -218,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmSearch.resx">
       <DependentUpon>FrmSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmUserLog.resx">
+      <DependentUpon>FrmUserLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmUserManage.resx">
       <DependentUpon>FrmUserManage.vb</DependentUpon>
@@ -262,6 +281,9 @@
     <None Include="Resources\clock.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\export %281%29.png" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\log.png" />
     <None Include="Resources\comments.png" />
     <None Include="Resources\clockye.png" />
     <None Include="Resources\padlock %281%29.png" />

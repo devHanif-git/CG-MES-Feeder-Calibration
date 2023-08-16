@@ -1,7 +1,13 @@
 ﻿Public Class FrmFeederCal
     Public SQL As New SQLControl
+    Public DATA As New SQLUserLog
+
     Dim LastCalDate As Date
     Dim LastCalDateS As String
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
     Private Sub FrmFeederCal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
@@ -56,6 +62,7 @@
                   FeederManagement.FGearSize,
                   FeederManagement.FColorCode,
                   FeederManagement.FStatus,
+                  FeederManagement.MsgBox,
                   FeederCalibration.CalibrationDate
               FROM
                   FeederManagement
@@ -110,7 +117,11 @@
                 CenterLabel()
                 txtEmployeeID.Focus()
             Else
-                MessageBox.Show("This Feeder is defective; please take note!" & vbCrLf & "This feeder is awaiting repair!", "NG Feeder", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("This Feeder is defective; please take note!" & vbCrLf & "This feeder is awaiting repair!" &
+                                vbCrLf &
+                                vbCrLf &
+                                vbCrLf & "No Good Message: " + SQL.DBDT.Rows(0)("MsgBox"),
+                                "NG Feeder", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 txtFeederID.Enabled = True
                 txtFeederID.Focus()
                 txtFeederID.SelectAll()
@@ -206,6 +217,10 @@
 
                     ' Press Confirm button to set the new calibration date
                     SQL.AddParam("@FeederID", txtFeederID.Text.Trim)
+                    SQL.ExecQuery("DELETE FROM FeederCalHistory WHERE FeederNumber = @FeederID")
+                    If SQL.HasException(True) Then Exit Sub
+
+                    SQL.AddParam("@FeederID", txtFeederID.Text.Trim)
                     SQL.AddParam("@LastCalibrationDate", If(LastCalDate = Date.MinValue, DBNull.Value, LastCalDate))
                     SQL.AddParam("@CalibrationDate", newCalibrationDate)
                     SQL.AddParam("@EmployeeID", employeeID)
@@ -217,6 +232,23 @@
                     SQL.AddParam("@EmployeeID", employeeID)
                     SQL.ExecQuery("UPDATE FeederCalibration SET CalibrationDate = @CalibrationDate, Updater = @EmployeeID WHERE FeederNumber = @FeederID;")
                     If SQL.HasException(True) Then Exit Sub
+
+                    SQL.AddParam("@FeederID", txtFeederID.Text.Trim)
+                    SQL.AddParam("@CalibrationDate", newCalibrationDate)
+                    SQL.AddParam("@EmployeeID", employeeID)
+                    SQL.ExecQuery("INSERT INTO FeederCalLog (RecordTime, FeederNumber, LatestCalDate, Updater) VALUES (GETDATE(), @FeederID, @CalibrationDate, @EmployeeID)")
+                    If SQL.HasException(True) Then Exit Sub
+
+                    If Not String.IsNullOrEmpty(FrmMain.UserID) Then
+                        DATA.GetUserData(employeeID)
+
+                        SQL.AddParam("@name", DATA.UName)
+                        SQL.AddParam("@uid", DATA.UID)
+                        SQL.AddParam("@log", $"USER CALIBRATED FEEDER {txtFeederID.Text.Trim} AND SET THE DATE TO {newCalibrationDate.ToString("d")}")
+                        SQL.AddParam("@feederID", txtFeederID.Text.Trim)
+                        SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, FeederNumber, LogDesc) VALUES(GETDATE(), @name, @uid, @feederID, @log);")
+                        If SQL.HasException(True) Then Exit Sub
+                    End If
 
                     pnlSection.Enabled = False
                     btnCancel.Enabled = False

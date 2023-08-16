@@ -1,4 +1,8 @@
 ﻿Public Class FrmNoGoodMsg
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
     Private Sub FrmNoGoodMsg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         Me.Show()

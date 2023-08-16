@@ -35,8 +35,10 @@ Partial Class FrmMain
         Me.ctrlMin = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
         Me.BtnUserManage = New Guna.UI2.WinForms.Guna2Button()
-        Me.ImgHero = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
+        Me.BtnFLog = New Guna.UI2.WinForms.Guna2Button()
+        Me.BtnULog = New Guna.UI2.WinForms.Guna2Button()
+        Me.ImgHero = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.Guna2Panel1.SuspendLayout()
         CType(Me.ImgHero, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -110,7 +112,7 @@ Partial Class FrmMain
         Me.BtnManage.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
         Me.BtnManage.ImageOffset = New System.Drawing.Point(15, 0)
         Me.BtnManage.ImageSize = New System.Drawing.Size(50, 50)
-        Me.BtnManage.Location = New System.Drawing.Point(252, 393)
+        Me.BtnManage.Location = New System.Drawing.Point(252, 464)
         Me.BtnManage.Name = "BtnManage"
         Me.BtnManage.Size = New System.Drawing.Size(358, 65)
         Me.BtnManage.TabIndex = 7
@@ -134,7 +136,7 @@ Partial Class FrmMain
         Me.BtnExit.HoverState.FillColor = System.Drawing.Color.Red
         Me.BtnExit.ImageOffset = New System.Drawing.Point(15, 0)
         Me.BtnExit.ImageSize = New System.Drawing.Size(50, 50)
-        Me.BtnExit.Location = New System.Drawing.Point(252, 535)
+        Me.BtnExit.Location = New System.Drawing.Point(252, 606)
         Me.BtnExit.Name = "BtnExit"
         Me.BtnExit.Size = New System.Drawing.Size(358, 65)
         Me.BtnExit.TabIndex = 8
@@ -146,7 +148,7 @@ Partial Class FrmMain
         Me.LblVer.BackColor = System.Drawing.Color.Transparent
         Me.LblVer.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblVer.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.LblVer.Location = New System.Drawing.Point(269, 612)
+        Me.LblVer.Location = New System.Drawing.Point(269, 683)
         Me.LblVer.Name = "LblVer"
         Me.LblVer.Size = New System.Drawing.Size(288, 15)
         Me.LblVer.TabIndex = 74
@@ -217,12 +219,62 @@ Partial Class FrmMain
         Me.BtnUserManage.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
         Me.BtnUserManage.ImageOffset = New System.Drawing.Point(15, 0)
         Me.BtnUserManage.ImageSize = New System.Drawing.Size(50, 50)
-        Me.BtnUserManage.Location = New System.Drawing.Point(252, 464)
+        Me.BtnUserManage.Location = New System.Drawing.Point(252, 535)
         Me.BtnUserManage.Name = "BtnUserManage"
         Me.BtnUserManage.Size = New System.Drawing.Size(358, 65)
         Me.BtnUserManage.TabIndex = 76
         Me.BtnUserManage.Text = "User Management"
         Me.BtnUserManage.TextOffset = New System.Drawing.Point(-16, 0)
+        '
+        'BtnFLog
+        '
+        Me.BtnFLog.Animated = True
+        Me.BtnFLog.BorderRadius = 10
+        Me.BtnFLog.CustomImages.Image = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.log
+        Me.BtnFLog.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.BtnFLog.CustomImages.ImageSize = New System.Drawing.Size(45, 45)
+        Me.BtnFLog.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.BtnFLog.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.BtnFLog.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.BtnFLog.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.BtnFLog.Enabled = False
+        Me.BtnFLog.FillColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.BtnFLog.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnFLog.ForeColor = System.Drawing.Color.White
+        Me.BtnFLog.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
+        Me.BtnFLog.ImageOffset = New System.Drawing.Point(15, 0)
+        Me.BtnFLog.ImageSize = New System.Drawing.Size(50, 50)
+        Me.BtnFLog.Location = New System.Drawing.Point(252, 393)
+        Me.BtnFLog.Name = "BtnFLog"
+        Me.BtnFLog.Size = New System.Drawing.Size(178, 65)
+        Me.BtnFLog.TabIndex = 77
+        Me.BtnFLog.Text = "Feeder Logs"
+        Me.BtnFLog.TextOffset = New System.Drawing.Point(26, 0)
+        '
+        'BtnULog
+        '
+        Me.BtnULog.Animated = True
+        Me.BtnULog.BorderRadius = 10
+        Me.BtnULog.CustomImages.Image = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.log
+        Me.BtnULog.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.BtnULog.CustomImages.ImageSize = New System.Drawing.Size(45, 45)
+        Me.BtnULog.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.BtnULog.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.BtnULog.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.BtnULog.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.BtnULog.Enabled = False
+        Me.BtnULog.FillColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.BtnULog.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnULog.ForeColor = System.Drawing.Color.White
+        Me.BtnULog.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
+        Me.BtnULog.ImageOffset = New System.Drawing.Point(15, 0)
+        Me.BtnULog.ImageSize = New System.Drawing.Size(50, 50)
+        Me.BtnULog.Location = New System.Drawing.Point(432, 393)
+        Me.BtnULog.Name = "BtnULog"
+        Me.BtnULog.Size = New System.Drawing.Size(178, 65)
+        Me.BtnULog.TabIndex = 78
+        Me.BtnULog.Text = "User Logs"
+        Me.BtnULog.TextOffset = New System.Drawing.Point(16, 0)
         '
         'ImgHero
         '
@@ -241,6 +293,8 @@ Partial Class FrmMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(47, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1164, 893)
+        Me.Controls.Add(Me.BtnULog)
+        Me.Controls.Add(Me.BtnFLog)
         Me.Controls.Add(Me.BtnUserManage)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.LblVer)
@@ -272,4 +326,6 @@ Partial Class FrmMain
     Friend WithEvents Guna2DragControl1 As Guna.UI2.WinForms.Guna2DragControl
     Friend WithEvents BtnUserManage As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2ShadowForm1 As Guna.UI2.WinForms.Guna2ShadowForm
+    Friend WithEvents BtnULog As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents BtnFLog As Guna.UI2.WinForms.Guna2Button
 End Class

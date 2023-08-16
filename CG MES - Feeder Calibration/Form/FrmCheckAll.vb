@@ -1,5 +1,9 @@
 ﻿Public Class FrmCheckAll
     Public SQL As New SQLControl
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
     Private Sub FrmCheckAll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         SetupDGV()
@@ -69,8 +73,6 @@
                         dgvFeeder.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("FeederNumber"), calibrationDate.ToString("d")})
                         dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(2).Style.BackColor = Color.Yellow
                     End If
-
-
                 End If
             Next
         End If

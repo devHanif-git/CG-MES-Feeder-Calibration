@@ -174,7 +174,7 @@
     <value>83</value>
   </data>
   <data name="btnCheckAll.Text" xml:space="preserve">
-    <value>List All The Feeders That Need Calibration.</value>
+    <value>List All The Feeders</value>
   </data>
   <data name="&gt;&gt;btnCheckAll.Name" xml:space="preserve">
     <value>btnCheckAll</value>

@@ -1,5 +1,9 @@
 ﻿Public Class FrmSeachSimple
     Public Shared selection As Integer
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
     Private Sub FrmSeachSimple_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         txtFeederID.Clear()
@@ -64,6 +68,23 @@
                 End If
 
                 If Not InStr(FrmCheckAll.dgvFeeder.Rows(i - 1).Cells(1).Value.ToString.ToUpper, txtFeederID.Text.ToUpper) Then
+                    found = False
+                End If
+            Next
+            If found = False Then
+                MessageBox.Show("No matching records found.", "Search", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        ElseIf selection = 3 Then
+            For i As Integer = 1 To FrmCheckAllA.dgvFeeder.Rows.Count
+                If InStr(FrmCheckAllA.dgvFeeder.Rows(i - 1).Cells(1).Value.ToString.ToUpper, txtFeederID.Text.ToUpper) Then
+                    FrmCheckAllA.dgvFeeder.ClearSelection()
+                    FrmCheckAllA.dgvFeeder.Rows(i - 1).Selected = True
+                    FrmCheckAllA.dgvFeeder.FirstDisplayedScrollingRowIndex = (i - 1)
+                    found = True
+                    Exit For
+                End If
+
+                If Not InStr(FrmCheckAllA.dgvFeeder.Rows(i - 1).Cells(1).Value.ToString.ToUpper, txtFeederID.Text.ToUpper) Then
                     found = False
                 End If
             Next

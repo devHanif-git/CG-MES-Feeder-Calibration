@@ -1,5 +1,10 @@
 ﻿Public Class FrmCalChecker
     Public SQL As New SQLControl
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
     Private Sub FrmCalChecker_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         FrmMain.Show()
     End Sub
@@ -109,7 +114,7 @@
                 btnCheck.Text = "This feeder is defective; please take note! This feeder is awaiting repair!"
                 btnLastCal.FillColor = Color.FromArgb(186, 25, 27)
                 btnLastCal.Text = "Next Calibration Date: N/A"
-                MessageBox.Show(SQL.DBDT.Rows(0)("MsgBox"), "No Good Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show(SQL.DBDT.Rows(0)("MsgBox"), "No Good Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Else
             btnCheck.FillColor = Color.FromArgb(186, 25, 27)
@@ -163,6 +168,6 @@
     End Sub
 
     Private Sub btnCheckAll_Click(sender As Object, e As EventArgs) Handles btnCheckAll.Click
-        FrmCheckAll.ShowDialog()
+        FrmCheckAllA.ShowDialog()
     End Sub
 End Class

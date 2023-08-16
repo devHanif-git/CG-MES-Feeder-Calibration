@@ -1,5 +1,7 @@
 ﻿Public Class FrmManagement
     Public SQL As New SQLControl
+    Public DATA As New SQLUserLog
+
     Dim selection As Integer
     Dim oldID As String
     Dim oldType As String
@@ -7,6 +9,10 @@
     Dim oldColor As String
     Dim oldStts As String
     Public Shared noGoodMsg As String
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
     Private Sub FrmManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
@@ -205,7 +211,7 @@
             If SQL.HasException(True) Then Exit Sub
 
             If SQL.RecordCount > 0 Then
-                If Not (SQL.DBDT.Rows(0)("UserGroup") = "SMT Feeder" Or SQL.DBDT.Rows(0)("UserGroup") = "SMT" Or SQL.DBDT.Rows(0)("UserGroup") = "System Admin") Then
+                If Not ((SQL.DBDT.Rows(0)("UserGroup") = "SMT Feeder" Or SQL.DBDT.Rows(0)("UserGroup") = "SMT" Or SQL.DBDT.Rows(0)("UserGroup") = "System Admin") And (SQL.DBDT.Rows(0)("UserLevel") = 3 Or SQL.DBDT.Rows(0)("UserLevel") = 2)) Then
                     MessageBox.Show("You do not have access to this feature." & vbCrLf & "Please check with your Group Adminisrator for assistance.", "Access Declined", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     txtEmployeeID.SelectAll()
                     txtEmployeeID.Focus()
@@ -257,6 +263,23 @@
                                 SQL.AddParam("@uid", txtEmployeeID.Text.Trim)
                                 SQL.ExecQuery("INSERT INTO FeederCalibration (FeederNumber, CalibrationDate, Updater) VALUES(@id, @null, @uid);")
                                 If SQL.HasException(True) Then Exit Sub
+
+                                SQL.AddParam("@id", txtFeederID.Text.Trim)
+                                SQL.AddParam("@null", DBNull.Value)
+                                SQL.AddParam("@uid", txtEmployeeID.Text.Trim)
+                                SQL.ExecQuery("INSERT INTO FeederCalHistory (FeederNumber, LastCalDate, LatestCalDate, Updater) VALUES(@id, @null, @null, @uid);")
+                                If SQL.HasException(True) Then Exit Sub
+
+                                If Not String.IsNullOrEmpty(FrmMain.UserID) Then
+                                    DATA.GetUserData(txtEmployeeID.Text.Trim)
+
+                                    SQL.AddParam("@name", DATA.UName)
+                                    SQL.AddParam("@uid", DATA.UID)
+                                    SQL.AddParam("@feederID", txtFeederID.Text.Trim)
+                                    SQL.AddParam("@log", $"USER ADDED FEEDER DETAIL FOR {txtFeederID.Text.Trim}")
+                                    SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, FeederNumber, LogDesc) VALUES(GETDATE(), @name, @uid, @feederID, @log);")
+                                    If SQL.HasException(True) Then Exit Sub
+                                End If
 
                                 MessageBox.Show("Feeder ID '" + txtFeederID.Text + "' has been added.", "Feeder Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -318,6 +341,17 @@
                             SQL.ExecQuery("UPDATE FeederManagement SET FeederType = @type, FGearSize = @size, FColorCode = @color, FStatus = @status, UpdateTime = GETDATE(), Updater = @uid, MsgBox = @noGoodMsg WHERE FeederNumber = @id;")
                             If SQL.HasException(True) Then Exit Sub
 
+                            If Not String.IsNullOrEmpty(FrmMain.UserID) Then
+                                DATA.GetUserData(txtEmployeeID.Text.Trim)
+
+                                SQL.AddParam("@name", DATA.UName)
+                                SQL.AddParam("@uid", DATA.UID)
+                                SQL.AddParam("@feederID", txtFeederID.Text.Trim)
+                                SQL.AddParam("@log", $"USER EDITED FEEDER DETAIL FOR {txtFeederID.Text.Trim}")
+                                SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, FeederNumber, LogDesc) VALUES(GETDATE(), @name, @uid, @feederID, @log);")
+                                If SQL.HasException(True) Then Exit Sub
+                            End If
+
                             MessageBox.Show("Feeder ID '" + txtFeederID.Text + "' has been updated.", "Feeder Updated", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                             dgvFeeder.Enabled = True
@@ -356,6 +390,17 @@
                 SQL.AddParam("@id", txtFeederID.Text)
                 SQL.ExecQuery("DELETE FROM FeederCalibration WHERE FeederNumber = @id")
                 If SQL.HasException(True) Then Exit Sub
+
+                If Not String.IsNullOrEmpty(FrmMain.UserID) Then
+                    DATA.GetUserData(FrmMain.UserID)
+
+                    SQL.AddParam("@name", DATA.UName)
+                    SQL.AddParam("@uid", DATA.UID)
+                    SQL.AddParam("@feederID", txtFeederID.Text.Trim)
+                    SQL.AddParam("@log", $"USER DELETED FEEDER DETAIL FOR {txtFeederID.Text.Trim}")
+                    SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, FeederNumber, LogDesc) VALUES(GETDATE(), @name, @uid, @feederID, @log);")
+                    If SQL.HasException(True) Then Exit Sub
+                End If
 
                 LoadDatatoDGV()
             End If
@@ -413,6 +458,17 @@
             ' Ctrl+F is pressed
             btnRefresh.PerformClick()
             e.Handled = True ' Set handled to True to prevent further processing of the key press event
+        End If
+    End Sub
+
+    Private Sub txtEmployeeID_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtEmployeeID.KeyPress
+        If Asc(e.KeyChar) = 13 Then
+            e.Handled = True
+            Try
+                btnConfirm.PerformClick()
+            Catch ex As Exception
+                Exit Sub
+            End Try
         End If
     End Sub
 End Class

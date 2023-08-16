@@ -1,12 +1,17 @@
-﻿Imports System.Net
-Imports System.Net.Mail
+﻿Imports System.Net.Mail
 Public Class FrmLogin
     Public SQL As New SQLControl
+
     Private AnimatedImage As Image
     Private securityCode As String
     Private suspended As Boolean
     Private currentCGID As String
     Private noAccess As Boolean
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
     Private Async Sub frmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         pnlLoading.Visible = False
@@ -24,7 +29,6 @@ Public Class FrmLogin
         Await Task.Delay(200)
         pnlLogin.Visible = True
         pnlMain.Visible = True
-
         txtID.Focus()
     End Sub
 
@@ -100,12 +104,19 @@ Public Class FrmLogin
                     suspended = True
                 Else
                     Dim UserGroup As String = SQL.DBDT.Rows(0)("UserGroup").ToString
-                    If Not (UserGroup = "SMT Feeder" Or UserGroup = "System Admin") Then
+                    If Not (UserGroup = "SMT" Or UserGroup = "SMT Feeder" Or UserGroup = "System Admin") Then
                         noAccess = True
                         Return False
                     End If
+                    FrmMain.UserID = SQL.DBDT.Rows(0)("UserID").ToString
                     FrmMain.UserGroup = SQL.DBDT.Rows(0)("UserGroup").ToString
                     FrmMain.UserLevel = SQL.DBDT.Rows(0)("UserLevel").ToString
+
+                    SQL.AddParam("@name", SQL.DBDT.Rows(0)("Name"))
+                    SQL.AddParam("@uid", SQL.DBDT.Rows(0)("UserID"))
+                    SQL.AddParam("@log", "USER LOGGED IN TO THE SYSTEM")
+                    SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, LogDesc) VALUES(GETDATE(), @name, @uid, @log);")
+                    If SQL.HasException(True) Then Return False
                     Return True
                 End If
             End If
@@ -121,6 +132,13 @@ Public Class FrmLogin
             FrmMain.UserGroup = "System Admin"
             FrmMain.UserLevel = "3"
             GoTo superaccess
+        End If
+
+        If txtID.Text.Length < 1 Or txtPass.Text.Length < 1 Then
+            MessageBox.Show("Incorrect login details. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            txtID.Focus()
+            txtID.SelectAll()
+            Exit Sub
         End If
 
         Transition.HideSync(pnlLogin)
@@ -551,4 +569,6 @@ p {
             End Try
         End If
     End Sub
+
+
 End Class

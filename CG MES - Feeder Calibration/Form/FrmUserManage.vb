@@ -1,5 +1,7 @@
 ﻿Public Class FrmUserManage
     Public SQL As New SQLControl
+    Public DATA As New SQLUserLog
+
     Dim selection As Integer
     Dim oldID As String
     Dim oldEmail As String
@@ -8,6 +10,10 @@
     Dim oldGroup As String
     Dim oldLevel As String
     Dim oldStatus As Boolean
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
 
     Private Sub FrmUserManage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
@@ -140,12 +146,12 @@
         End If
     End Sub
 
-    Private Function GetUserEmail(UID As String) As Object
+    Private Function GetUserEmail(UID As String) As String
         Dim result As String = ""
 
         SQL.AddParam("@id", UID)
         SQL.ExecQuery("SELECT Email FROM Users WHERE UserID = @id")
-        If SQL.HasException(True) Then Exit Function
+        If SQL.HasException(True) Then Return result ' Return early in case of exception
 
         If SQL.RecordCount > 0 Then
             result = SQL.DBDT.Rows(0)("Email").ToString
@@ -154,12 +160,12 @@
         Return result
     End Function
 
-    Private Function GetUserPassword(UID As String) As Object
+    Private Function GetUserPassword(UID As String) As String
         Dim result As String = ""
 
         SQL.AddParam("@id", UID)
         SQL.ExecQuery("SELECT UserPass FROM Users WHERE UserID = @id")
-        If SQL.HasException(True) Then Exit Function
+        If SQL.HasException(True) Then Return result ' Return early in case of exception
 
         If SQL.RecordCount > 0 Then
             result = SQL.DBDT.Rows(0)("UserPass").ToString
@@ -234,6 +240,7 @@
         txtEmail.Clear()
         txtPass1.Clear()
         txtPass2.Clear()
+        btnActive.Checked = True
         cbxGroup.SelectedIndex = 0
         cbxLevel.SelectedIndex = 0
     End Sub
@@ -347,7 +354,18 @@
                     SQL.ExecQuery("INSERT INTO Users(UserID, UserPass, Name, Email, UserGroup, UserLevel, Status) VALUES(@id, @pass, @name, @email, @group, @lvl, @stts);")
                     If SQL.HasException(True) Then Exit Sub
 
-                    MessageBox.Show("New Employee Account Has Been Added.", "Administrator")
+                    If Not String.IsNullOrEmpty(FrmMain.UserID) Then
+                        DATA.GetUserData(FrmMain.UserID)
+
+                        SQL.AddParam("@name", DATA.UName)
+                        SQL.AddParam("@uid", DATA.UID)
+                        SQL.AddParam("@log", $"USER DATA FOR {txtEmployeeID.Text} ADDED")
+                        SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, LogDesc) VALUES(GETDATE(), @name, @uid, @log);")
+                        If SQL.HasException(True) Then Exit Sub
+                    End If
+
+                    MessageBox.Show("Employee Data '" + txtEmployeeID.Text + "' has been added.", "Employee Data Added", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
 
                     'other function
                     LoadDatatoDGV()
@@ -386,7 +404,19 @@
                 SQL.ExecQuery("UPDATE Users SET UserID = @id, UserPass = @pass, Name = @name, Email = @email, UserGroup = @group, UserLevel = @lvl, Status = @stts WHERE UserID = @oldid;")
                 If SQL.HasException(True) Then Exit Sub
 
-                MessageBox.Show("Employee Details Has Been Updated.", "Administrator")
+                If Not String.IsNullOrEmpty(FrmMain.UserID) Then
+                    DATA.GetUserData(FrmMain.UserID)
+
+                    SQL.AddParam("@name", DATA.UName)
+                    SQL.AddParam("@uid", DATA.UID)
+                    SQL.AddParam("@log", $"USER DATA FOR {txtEmployeeID.Text} EDITED")
+                    SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, LogDesc) VALUES(GETDATE(), @name, @uid, @log);")
+                    If SQL.HasException(True) Then Exit Sub
+                End If
+
+                MessageBox.Show("Employee Data '" + txtEmployeeID.Text + "' has been updated.", "Employee Data Updated", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
                 'Other function
                 LoadDatatoDGV()
                 Highlight(txtEmployeeID.Text)
@@ -401,7 +431,6 @@
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         oldID = txtEmployeeID.Text.Trim
-        'TODO: if cancel reset the oldID
         selection = 2
         oldName = txtName.Text.Trim
         oldEmail = txtEmail.Text.Trim
@@ -432,6 +461,16 @@
                 SQL.AddParam("@id", txtEmployeeID.Text)
                 SQL.ExecQuery("DELETE FROM Users WHERE UserID = @id")
                 If SQL.HasException(True) Then Exit Sub
+
+                If Not String.IsNullOrEmpty(FrmMain.UserID) Then
+                    DATA.GetUserData(FrmMain.UserID)
+
+                    SQL.AddParam("@name", DATA.UName)
+                    SQL.AddParam("@uid", DATA.UID)
+                    SQL.AddParam("@log", $"USER DATA FOR {txtEmployeeID.Text} DELETED")
+                    SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, LogDesc) VALUES(GETDATE(), @name, @uid, @log);")
+                    If SQL.HasException(True) Then Exit Sub
+                End If
 
                 LoadDatatoDGV()
                 DisableInput()

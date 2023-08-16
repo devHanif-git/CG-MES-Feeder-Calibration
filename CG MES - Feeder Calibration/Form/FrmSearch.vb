@@ -1,4 +1,8 @@
 ﻿Public Class FrmSearch
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
     Private Sub FrmSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         pnlMain.Left = (pnlMain.Parent.Width \ 2) - (pnlMain.Width \ 2)
         btnSearch.Left = (btnSearch.Parent.Width \ 2) - (btnSearch.Width \ 2)
