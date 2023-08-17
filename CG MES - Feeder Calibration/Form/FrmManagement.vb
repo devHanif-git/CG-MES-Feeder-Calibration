@@ -391,6 +391,10 @@
                 SQL.ExecQuery("DELETE FROM FeederCalibration WHERE FeederNumber = @id")
                 If SQL.HasException(True) Then Exit Sub
 
+                SQL.AddParam("@id", txtFeederID.Text)
+                SQL.ExecQuery("DELETE FROM FeederCalHistory WHERE FeederNumber = @id")
+                If SQL.HasException(True) Then Exit Sub
+
                 If Not String.IsNullOrEmpty(FrmMain.UserID) Then
                     DATA.GetUserData(FrmMain.UserID)
 
@@ -408,12 +412,16 @@
     End Sub
 
     Private Function CheckDupID(FID As String) As Boolean
+        Dim result As Boolean = False
+
         SQL.AddParam("@id", FID)
         SQL.ExecQuery("SELECT * FROM FeederManagement WHERE FeederNumber = @id")
-        Dim result As Boolean = False
+        If SQL.HasException(True) Then Return False
+
         If SQL.RecordCount > 0 Then
             result = True
         End If
+
         Return result
     End Function
 

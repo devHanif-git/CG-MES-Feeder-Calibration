@@ -5,7 +5,6 @@
     Public Shared UserID As String
     Public Shared UserLevel As Integer
     Public Shared UserGroup As String
-    'TODO: IF DELETE FEEDER DATA. MAKE SURE IF USER ADD AGAIN THE SAME PN, AT FeederCalHistory and FeederCalibration NO DUPLICATE
     Public Sub New()
         InitializeComponent()
     End Sub
