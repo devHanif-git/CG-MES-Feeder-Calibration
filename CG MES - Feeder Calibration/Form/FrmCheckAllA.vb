@@ -53,7 +53,7 @@
                 e.SortResult = String.Compare(e.CellValue1.ToString(), e.CellValue2.ToString())
             End If
 
-            e.Handled = True ' Indicate that you've handled the sorting
+            e.Handled = True ' Indicate handled the sorting
         End If
     End Sub
 
@@ -74,23 +74,24 @@
             For i As Integer = 1 To SQL.DBDT.Rows.Count
                 Dim status As Boolean = SQL.DBDT.Rows(i - 1)("FStatus")
 
-                Dim latestCalDateValue = SQL.DBDT.Rows(i - 1)("LatestCalDate")
                 Dim lastCalDateValue = SQL.DBDT.Rows(i - 1)("LastCalDate")
+                Dim latestCalDateValue = SQL.DBDT.Rows(i - 1)("LatestCalDate")
 
-                calibrationDate = If(latestCalDateValue IsNot DBNull.Value, CDate(latestCalDateValue), Nothing)
                 lastCalibrationDate = If(lastCalDateValue IsNot DBNull.Value, CDate(lastCalDateValue), Nothing)
+                calibrationDate = If(latestCalDateValue IsNot DBNull.Value, CDate(latestCalDateValue), Nothing)
 
+                'Check for YELLOW/RED
+                Dim lastCalibrationNeededDate As Date = lastCalibrationDate.AddMonths(3)
+                Dim lastCalibrationWarningDate As Date = lastCalibrationNeededDate.AddDays(-7)
                 'Check for YELLOW/RED
                 Dim calibrationNeededDate As Date = calibrationDate.AddMonths(3)
                 Dim calibrationWarningDate As Date = calibrationNeededDate.AddDays(-7)
 
-                Dim lastCalibrationNeededDate As Date = lastCalibrationDate.AddMonths(3)
-                Dim lastCalibrationWarningDate As Date = lastCalibrationNeededDate.AddDays(-7)
-
                 counter += 1
                 If calibrationDate = Nothing AndAlso lastCalibrationDate = Nothing Then
                     'BOTH OF THIS N/A OR NO CALIBRATED HISTORY
-                    dgvFeeder.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("FeederNumber"), "N/A", "N/A"})
+                    dgvFeeder.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("FeederNumber"), "N/A", "N/A",
+                                       SQL.DBDT.Rows(i - 1)("Updater")})
                     With dgvFeeder.Rows(dgvFeeder.Rows.Count - 1)
                         .Cells(2).Style.BackColor = Color.Red
                         .Cells(3).Style.BackColor = Color.Red
@@ -98,36 +99,38 @@
                 ElseIf lastCalibrationDate <> Nothing AndAlso calibrationDate = Nothing Then
                     'HAVE LAST CALIBRATED, LATEST N/A
                     dgvFeeder.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("FeederNumber"),
-                                               SQL.DBDT.Rows(i - 1)("LastCalDate"), "N/A"})
+                                               SQL.DBDT.Rows(i - 1)("LastCalDate"), "N/A", SQL.DBDT.Rows(i - 1)("Updater")})
                     With dgvFeeder.Rows(dgvFeeder.Rows.Count - 1)
-                        .Cells(3).Style.BackColor = Color.Red
+                        If currentDate > lastCalibrationNeededDate Then
+                            .Cells(2).Style.BackColor = Color.Red
+                            .Cells(3).Style.BackColor = Color.Red
+                        ElseIf currentDate >= lastCalibrationWarningDate Then
+                            .Cells(2).Style.BackColor = Color.Yellow
+                            .Cells(3).Style.BackColor = Color.Yellow
+                        End If
                     End With
-
-                    If currentDate > lastCalibrationNeededDate Then
-                        dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(2).Style.BackColor = Color.Red
-                    ElseIf currentDate >= lastCalibrationWarningDate Then
-                        dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(2).Style.BackColor = Color.Yellow
-                    End If
                 ElseIf lastCalibrationDate = Nothing AndAlso calibrationDate <> Nothing Then
                     'LATEST HAVE, LAST N/A
                     dgvFeeder.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("FeederNumber"),
-                                              "N/A", SQL.DBDT.Rows(i - 1)("LatestCalDate")})
-
-                    If currentDate > calibrationNeededDate Then
-                        dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(3).Style.BackColor = Color.Red
-                    ElseIf currentDate >= calibrationWarningDate Then
-                        dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(3).Style.BackColor = Color.Yellow
-                    End If
+                                              "N/A", SQL.DBDT.Rows(i - 1)("LatestCalDate"), SQL.DBDT.Rows(i - 1)("Updater")})
+                    With dgvFeeder.Rows(dgvFeeder.Rows.Count - 1)
+                        If currentDate > calibrationNeededDate Then
+                            .Cells(3).Style.BackColor = Color.Red
+                        ElseIf currentDate >= calibrationWarningDate Then
+                            .Cells(3).Style.BackColor = Color.Yellow
+                        End If
+                    End With
                 Else
                     'BOTH OF THIS HAS HISTORY
                     dgvFeeder.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("FeederNumber"),
                                               SQL.DBDT.Rows(i - 1)("LastCalDate"), SQL.DBDT.Rows(i - 1)("LatestCalDate")})
-
-                    If currentDate > calibrationNeededDate Then
-                        dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(3).Style.BackColor = Color.Red
-                    ElseIf currentDate >= calibrationWarningDate Then
-                        dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(3).Style.BackColor = Color.Yellow
-                    End If
+                    With dgvFeeder.Rows(dgvFeeder.Rows.Count - 1)
+                        If currentDate > calibrationNeededDate Then
+                            .Cells(3).Style.BackColor = Color.Red
+                        ElseIf currentDate >= calibrationWarningDate Then
+                            .Cells(3).Style.BackColor = Color.Yellow
+                        End If
+                    End With
                 End If
 
                 If Not status Then
