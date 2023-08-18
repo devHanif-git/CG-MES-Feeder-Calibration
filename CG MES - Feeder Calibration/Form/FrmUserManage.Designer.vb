@@ -23,10 +23,10 @@ Partial Class FrmUserManage
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmUserManage))
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
@@ -36,6 +36,11 @@ Partial Class FrmUserManage
         Me.LblVer = New System.Windows.Forms.Label()
         Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
         Me.Guna2Panel3 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.btnSuspend = New Guna.UI2.WinForms.Guna2RadioButton()
+        Me.btnActive = New Guna.UI2.WinForms.Guna2RadioButton()
+        Me.lblStatus = New System.Windows.Forms.Label()
+        Me.cbxLevel = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.cbxGroup = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.btnConfirm = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDelete = New Guna.UI2.WinForms.Guna2Button()
@@ -53,11 +58,6 @@ Partial Class FrmUserManage
         Me.txtName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtEmployeeID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.ImgHero = New System.Windows.Forms.PictureBox()
-        Me.cbxGroup = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.cbxLevel = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.lblStatus = New System.Windows.Forms.Label()
-        Me.btnActive = New Guna.UI2.WinForms.Guna2RadioButton()
-        Me.btnSuspend = New Guna.UI2.WinForms.Guna2RadioButton()
         Me.Guna2Panel1.SuspendLayout()
         Me.Guna2Panel3.SuspendLayout()
         Me.pnl1.SuspendLayout()
@@ -150,6 +150,107 @@ Partial Class FrmUserManage
         Me.Guna2Panel3.Name = "Guna2Panel3"
         Me.Guna2Panel3.Size = New System.Drawing.Size(468, 446)
         Me.Guna2Panel3.TabIndex = 89
+        '
+        'btnSuspend
+        '
+        Me.btnSuspend.AutoSize = True
+        Me.btnSuspend.BackColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btnSuspend.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnSuspend.CheckedState.BorderThickness = 0
+        Me.btnSuspend.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnSuspend.CheckedState.InnerColor = System.Drawing.Color.White
+        Me.btnSuspend.CheckedState.InnerOffset = -4
+        Me.btnSuspend.Enabled = False
+        Me.btnSuspend.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnSuspend.ForeColor = System.Drawing.Color.White
+        Me.btnSuspend.Location = New System.Drawing.Point(176, 225)
+        Me.btnSuspend.Name = "btnSuspend"
+        Me.btnSuspend.Size = New System.Drawing.Size(93, 25)
+        Me.btnSuspend.TabIndex = 113
+        Me.btnSuspend.Text = "Suspend"
+        Me.btnSuspend.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnSuspend.UncheckedState.BorderThickness = 2
+        Me.btnSuspend.UncheckedState.FillColor = System.Drawing.Color.Transparent
+        Me.btnSuspend.UncheckedState.InnerColor = System.Drawing.Color.Transparent
+        Me.btnSuspend.UseVisualStyleBackColor = False
+        '
+        'btnActive
+        '
+        Me.btnActive.AutoSize = True
+        Me.btnActive.BackColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btnActive.Checked = True
+        Me.btnActive.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnActive.CheckedState.BorderThickness = 0
+        Me.btnActive.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnActive.CheckedState.InnerColor = System.Drawing.Color.White
+        Me.btnActive.CheckedState.InnerOffset = -4
+        Me.btnActive.Enabled = False
+        Me.btnActive.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnActive.ForeColor = System.Drawing.Color.White
+        Me.btnActive.Location = New System.Drawing.Point(87, 225)
+        Me.btnActive.Name = "btnActive"
+        Me.btnActive.Size = New System.Drawing.Size(76, 25)
+        Me.btnActive.TabIndex = 112
+        Me.btnActive.TabStop = True
+        Me.btnActive.Text = "Active"
+        Me.btnActive.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnActive.UncheckedState.BorderThickness = 2
+        Me.btnActive.UncheckedState.FillColor = System.Drawing.Color.Transparent
+        Me.btnActive.UncheckedState.InnerColor = System.Drawing.Color.Transparent
+        Me.btnActive.UseVisualStyleBackColor = False
+        '
+        'lblStatus
+        '
+        Me.lblStatus.AutoSize = True
+        Me.lblStatus.BackColor = System.Drawing.Color.Transparent
+        Me.lblStatus.Enabled = False
+        Me.lblStatus.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStatus.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.lblStatus.Location = New System.Drawing.Point(20, 226)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(61, 21)
+        Me.lblStatus.TabIndex = 111
+        Me.lblStatus.Text = "Status:"
+        '
+        'cbxLevel
+        '
+        Me.cbxLevel.BackColor = System.Drawing.Color.Transparent
+        Me.cbxLevel.BorderColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.cbxLevel.BorderRadius = 8
+        Me.cbxLevel.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbxLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxLevel.Enabled = False
+        Me.cbxLevel.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbxLevel.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbxLevel.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.cbxLevel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(121, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(129, Byte), Integer))
+        Me.cbxLevel.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
+        Me.cbxLevel.ItemHeight = 30
+        Me.cbxLevel.Location = New System.Drawing.Point(238, 183)
+        Me.cbxLevel.MaxDropDownItems = 14
+        Me.cbxLevel.Name = "cbxLevel"
+        Me.cbxLevel.Size = New System.Drawing.Size(216, 36)
+        Me.cbxLevel.TabIndex = 8
+        '
+        'cbxGroup
+        '
+        Me.cbxGroup.BackColor = System.Drawing.Color.Transparent
+        Me.cbxGroup.BorderColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.cbxGroup.BorderRadius = 8
+        Me.cbxGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxGroup.Enabled = False
+        Me.cbxGroup.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbxGroup.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbxGroup.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.cbxGroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(121, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(129, Byte), Integer))
+        Me.cbxGroup.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
+        Me.cbxGroup.ItemHeight = 30
+        Me.cbxGroup.Location = New System.Drawing.Point(15, 183)
+        Me.cbxGroup.MaxDropDownItems = 14
+        Me.cbxGroup.Name = "cbxGroup"
+        Me.cbxGroup.Size = New System.Drawing.Size(216, 36)
+        Me.cbxGroup.TabIndex = 7
         '
         'btnConfirm
         '
@@ -383,44 +484,44 @@ Partial Class FrmUserManage
         Me.dgvUser.AllowUserToAddRows = False
         Me.dgvUser.AllowUserToDeleteRows = False
         Me.dgvUser.AllowUserToResizeRows = False
-        DataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer))
-        DataGridViewCellStyle33.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.Black
-        Me.dgvUser.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle33
-        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle34.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle34.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle34.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvUser.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
+        Me.dgvUser.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvUser.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvUser.ColumnHeadersHeight = 27
         Me.dgvUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle35.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle35.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle35.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle35.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvUser.DefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvUser.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvUser.Enabled = False
         Me.dgvUser.GridColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(241, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.dgvUser.Location = New System.Drawing.Point(7, 16)
         Me.dgvUser.Name = "dgvUser"
         Me.dgvUser.ReadOnly = True
         Me.dgvUser.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle36.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle36.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvUser.RowHeadersDefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvUser.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvUser.RowHeadersVisible = False
         Me.dgvUser.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.dgvUser.RowTemplate.Height = 20
@@ -613,109 +714,6 @@ Partial Class FrmUserManage
         Me.ImgHero.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.ImgHero.TabIndex = 86
         Me.ImgHero.TabStop = False
-        '
-        'cbxGroup
-        '
-        Me.cbxGroup.BackColor = System.Drawing.Color.Transparent
-        Me.cbxGroup.BorderColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.cbxGroup.BorderRadius = 8
-        Me.cbxGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cbxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxGroup.Enabled = False
-        Me.cbxGroup.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbxGroup.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbxGroup.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.cbxGroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(121, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(129, Byte), Integer))
-        Me.cbxGroup.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.cbxGroup.ItemHeight = 30
-        Me.cbxGroup.Location = New System.Drawing.Point(15, 183)
-        Me.cbxGroup.MaxDropDownItems = 14
-        Me.cbxGroup.Name = "cbxGroup"
-        Me.cbxGroup.Size = New System.Drawing.Size(216, 36)
-        Me.cbxGroup.StartIndex = 0
-        Me.cbxGroup.TabIndex = 7
-        '
-        'cbxLevel
-        '
-        Me.cbxLevel.BackColor = System.Drawing.Color.Transparent
-        Me.cbxLevel.BorderColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.cbxLevel.BorderRadius = 8
-        Me.cbxLevel.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cbxLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxLevel.Enabled = False
-        Me.cbxLevel.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbxLevel.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbxLevel.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.cbxLevel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(121, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(129, Byte), Integer))
-        Me.cbxLevel.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.cbxLevel.ItemHeight = 30
-        Me.cbxLevel.Location = New System.Drawing.Point(238, 183)
-        Me.cbxLevel.MaxDropDownItems = 14
-        Me.cbxLevel.Name = "cbxLevel"
-        Me.cbxLevel.Size = New System.Drawing.Size(216, 36)
-        Me.cbxLevel.StartIndex = 0
-        Me.cbxLevel.TabIndex = 8
-        '
-        'lblStatus
-        '
-        Me.lblStatus.AutoSize = True
-        Me.lblStatus.BackColor = System.Drawing.Color.Transparent
-        Me.lblStatus.Enabled = False
-        Me.lblStatus.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatus.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.lblStatus.Location = New System.Drawing.Point(20, 226)
-        Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(61, 21)
-        Me.lblStatus.TabIndex = 111
-        Me.lblStatus.Text = "Status:"
-        '
-        'btnActive
-        '
-        Me.btnActive.AutoSize = True
-        Me.btnActive.BackColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btnActive.Checked = True
-        Me.btnActive.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnActive.CheckedState.BorderThickness = 0
-        Me.btnActive.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnActive.CheckedState.InnerColor = System.Drawing.Color.White
-        Me.btnActive.CheckedState.InnerOffset = -4
-        Me.btnActive.Enabled = False
-        Me.btnActive.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btnActive.ForeColor = System.Drawing.Color.White
-        Me.btnActive.Location = New System.Drawing.Point(87, 225)
-        Me.btnActive.Name = "btnActive"
-        Me.btnActive.Size = New System.Drawing.Size(76, 25)
-        Me.btnActive.TabIndex = 112
-        Me.btnActive.TabStop = True
-        Me.btnActive.Text = "Active"
-        Me.btnActive.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnActive.UncheckedState.BorderThickness = 2
-        Me.btnActive.UncheckedState.FillColor = System.Drawing.Color.Transparent
-        Me.btnActive.UncheckedState.InnerColor = System.Drawing.Color.Transparent
-        Me.btnActive.UseVisualStyleBackColor = False
-        '
-        'btnSuspend
-        '
-        Me.btnSuspend.AutoSize = True
-        Me.btnSuspend.BackColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btnSuspend.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnSuspend.CheckedState.BorderThickness = 0
-        Me.btnSuspend.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnSuspend.CheckedState.InnerColor = System.Drawing.Color.White
-        Me.btnSuspend.CheckedState.InnerOffset = -4
-        Me.btnSuspend.Enabled = False
-        Me.btnSuspend.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btnSuspend.ForeColor = System.Drawing.Color.White
-        Me.btnSuspend.Location = New System.Drawing.Point(176, 225)
-        Me.btnSuspend.Name = "btnSuspend"
-        Me.btnSuspend.Size = New System.Drawing.Size(93, 25)
-        Me.btnSuspend.TabIndex = 113
-        Me.btnSuspend.Text = "Suspend"
-        Me.btnSuspend.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnSuspend.UncheckedState.BorderThickness = 2
-        Me.btnSuspend.UncheckedState.FillColor = System.Drawing.Color.Transparent
-        Me.btnSuspend.UncheckedState.InnerColor = System.Drawing.Color.Transparent
-        Me.btnSuspend.UseVisualStyleBackColor = False
         '
         'FrmUserManage
         '

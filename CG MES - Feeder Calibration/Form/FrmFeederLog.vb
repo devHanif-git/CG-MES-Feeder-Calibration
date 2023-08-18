@@ -11,14 +11,11 @@
 
     Public Sub New()
         InitializeComponent()
-    End Sub
-    Private Sub FrmFeederLog_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        FrmMain.Show()
+        SetupDGV()
     End Sub
 
     Private Sub FrmFeederLog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
-        SetupDGV()
 
         LoadData()
 
@@ -200,5 +197,9 @@
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         ctrlClose.PerformClick()
+    End Sub
+
+    Private Sub FrmFeederLog_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        FrmMain.Show()
     End Sub
 End Class

@@ -1,7 +1,5 @@
-﻿Public Class FrmUserLog
+﻿Public Class FrmMachineLog
     Public SQL As New SQLControl
-
-    Public Shared mode As Integer
 
     Private currentPage As Integer = 1
     Private pageSize As Integer = 100
@@ -16,7 +14,11 @@
         SetupDGV()
     End Sub
 
-    Private Sub FrmUserLog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmMachineLog_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        FrmPM.Show()
+    End Sub
+
+    Private Sub FrmMachineLog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
 
         LoadData()
@@ -27,7 +29,7 @@
     End Sub
 
     Private Sub LoadData()
-        Dim query As String = "SELECT COUNT(*) FROM UserLog"
+        Dim query As String = "SELECT COUNT(*) FROM MachineCalLog"
 
         If searchMode Then
             SQL.AddParam("@searchText", "%" & searchText & "%")
@@ -64,15 +66,15 @@
     End Sub
 
     Private Sub SetupDGV()
-        With dgvUserLogs
+        With dgvMachineLog
             .RowHeadersVisible = False
             .EnableHeadersVisualStyles = False
-            .ColumnCount = 7
+            .ColumnCount = 8
             .AllowUserToResizeRows = False
             .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
-            Dim columns As String() = {"No.", "Record Time", "Name", "Employee ID", "Machine ID", "Feeder ID", "Description"}
-            Dim widths As Integer() = {40, 140, 180, 80, 65, 65, 350}
+            Dim columns As String() = {"No.", "Record Time", "Machine ID", "PM Calibrated Date", "Updater"}
+            Dim widths As Integer() = {40, 220, 220, 220, 150}
 
             For i As Integer = 0 To columns.Length - 1
                 .Columns(i).Name = columns(i)
@@ -85,14 +87,14 @@
     End Sub
 
     Private Sub LoadDatatoDGV()
-        dgvUserLogs.Rows.Clear()
+        dgvMachineLog.Rows.Clear()
 
         ' Retrieve the records for the current page
         Dim offset As Integer = (currentPage - 1) * pageSize
         SQL.AddParam("@offset", offset)
         SQL.AddParam("@fetch", pageSize)
 
-        Dim query As String = "SELECT * FROM UserLog"
+        Dim query As String = "SELECT * FROM MachineCalLog"
 
         If searchMode Then
             SQL.AddParam("@searchText", "%" & searchText & "%")
@@ -104,20 +106,68 @@
         SQL.ExecQuery(query)
         If SQL.HasException(True) Then Exit Sub
 
-        'TODO: REMOVE DUPLICATE ON FeederCalHistory REAL DB
-
         If SQL.RecordCount > 0 Then
             For i As Integer = 1 To SQL.DBDT.Rows.Count
-                Dim recordTime As Date = SQL.DBDT.Rows(i - 1)("RecordTime")
-                Dim userName As String = SQL.DBDT.Rows(i - 1)("UserName")
-                Dim userID As String = SQL.DBDT.Rows(i - 1)("UserID")
-                Dim textMID As String = If(String.IsNullOrEmpty(SQL.DBDT.Rows(i - 1)("MachineID").ToString()), "-", SQL.DBDT.Rows(i - 1)("MachineID"))
-                Dim textFeederID As String = If(String.IsNullOrEmpty(SQL.DBDT.Rows(i - 1)("FeederNumber").ToString()), "-", SQL.DBDT.Rows(i - 1)("FeederNumber"))
-                Dim desc As String = SQL.DBDT.Rows(i - 1)("LogDesc")
+                Dim textCalibrate As String
 
-                dgvUserLogs.Rows.Add(New Object() {i.ToString + ".", recordTime, userName, userID, textMID, textFeederID,
-                               desc})
+                textCalibrate = If(String.IsNullOrEmpty(SQL.DBDT.Rows(i - 1)("LatestCalDate").ToString()), "-", SQL.DBDT.Rows(i - 1)("LatestCalDate"))
+
+                dgvMachineLog.Rows.Add(New Object() {i.ToString + ".", SQL.DBDT.Rows(i - 1)("RecordTime"), SQL.DBDT.Rows(i - 1)("MachineID"), textCalibrate,
+                                SQL.DBDT.Rows(i - 1)("Updater")})
             Next
+        End If
+    End Sub
+
+    Private Sub cbxType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxType.SelectedIndexChanged
+        txtSearch.Focus()
+    End Sub
+
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        If txtSearch.Text.Trim = "" Then
+            dgvMachineLog.ClearSelection()
+            Return
+        End If
+
+        Dim text As String = cbxType.Text
+
+        For i As Integer = 1 To dgvMachineLog.Rows.Count
+            If InStr(dgvMachineLog.Rows(i - 1).Cells(text).Value.ToString.ToUpper, txtSearch.Text.ToUpper) Then
+                dgvMachineLog.ClearSelection()
+                dgvMachineLog.Rows(i - 1).Selected = True
+                dgvMachineLog.FirstDisplayedScrollingRowIndex = (i - 1)
+                Return
+            End If
+
+            If Not InStr(dgvMachineLog.Rows(i - 1).Cells(text).Value.ToString.ToUpper, txtSearch.Text.ToUpper) Then
+                dgvMachineLog.ClearSelection()
+            End If
+        Next
+    End Sub
+
+    Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress
+        'press enter in textbox
+        If Asc(e.KeyChar) = 13 Then
+            'no beep
+            e.Handled = True
+            Try
+
+                If txtSearch.Text = "" Then
+                    searchMode = False
+                Else
+                    currentPage = 1
+                    searchMode = True
+
+                    Dim dataTypes As String() = {"MachineID", "RecordTime", "LatestCalDate"}
+
+                    searchType = dataTypes(cbxType.SelectedIndex)
+
+                    searchText = txtSearch.Text.Trim.ToUpper
+                End If
+
+                LoadData()
+            Catch ex As Exception
+                Exit Sub
+            End Try
         End If
     End Sub
 
@@ -149,69 +199,7 @@
         UpdateNavButtons()
     End Sub
 
-    Private Sub cbxType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxType.SelectedIndexChanged
-        txtSearch.Focus()
-    End Sub
-
-    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-        If txtSearch.Text.Trim = "" Then
-            dgvUserLogs.ClearSelection()
-            Return
-        End If
-
-        Dim text As String = cbxType.Text
-
-        For i As Integer = 1 To dgvUserLogs.Rows.Count
-            If InStr(dgvUserLogs.Rows(i - 1).Cells(text).Value.ToString.ToUpper, txtSearch.Text.ToUpper) Then
-                dgvUserLogs.ClearSelection()
-                dgvUserLogs.Rows(i - 1).Selected = True
-                dgvUserLogs.FirstDisplayedScrollingRowIndex = (i - 1)
-                Return
-            End If
-
-            If Not InStr(dgvUserLogs.Rows(i - 1).Cells(text).Value.ToString.ToUpper, txtSearch.Text.ToUpper) Then
-                dgvUserLogs.ClearSelection()
-            End If
-        Next
-    End Sub
-
-    Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress
-        'press enter in textbox
-        If Asc(e.KeyChar) = 13 Then
-            'no beep
-            e.Handled = True
-            Try
-
-                If txtSearch.Text = "" Then
-                    searchMode = False
-                Else
-                    currentPage = 1
-                    searchMode = True
-
-                    Dim dataTypes As String() = {"RecordTime", "UserName", "UserID", "MachineID", "FeederNumber"}
-
-                    searchType = dataTypes(cbxType.SelectedIndex)
-
-                    searchText = txtSearch.Text.Trim.ToUpper
-                End If
-
-                LoadData()
-            Catch ex As Exception
-                Exit Sub
-            End Try
-        End If
-    End Sub
-
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         ctrlClose.PerformClick()
-    End Sub
-
-    Private Sub FrmUserLog_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        If mode = 1 Then
-            FrmMain.Show()
-        ElseIf mode = 2 Then
-            FrmPM.Show()
-        End If
-
     End Sub
 End Class

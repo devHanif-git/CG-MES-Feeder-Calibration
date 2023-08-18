@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>CG_MES___Feeder_Calibration.My.MyApplication</StartupObject>
     <RootNamespace>CG_MES___Feeder_Calibration</RootNamespace>
-    <AssemblyName>CG MES - Feeder Calibration</AssemblyName>
+    <AssemblyName>CG MES - Feeder and PM Calibration</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -37,7 +37,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>CG MES - Feeder Calibration.xml</DocumentationFile>
+    <DocumentationFile>CG MES - Feeder and PM Calibration.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -47,7 +47,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>CG MES - Feeder Calibration.xml</DocumentationFile>
+    <DocumentationFile>CG MES - Feeder and PM Calibration.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -138,6 +138,12 @@
     <Compile Include="Form\FrmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FrmMachineLog.Designer.vb">
+      <DependentUpon>FrmMachineLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmMachineLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FrmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -151,10 +157,52 @@
     <Compile Include="Form\FrmManagement.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FrmMMange.Designer.vb">
+      <DependentUpon>FrmMMange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmMMange.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FrmNoGoodMsg.Designer.vb">
       <DependentUpon>FrmNoGoodMsg.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\FrmNoGoodMsg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmPM.Designer.vb">
+      <DependentUpon>FrmPM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmPM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmPMCal.Designer.vb">
+      <DependentUpon>FrmPMCal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmPMCal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmPMCheckAll.Designer.vb">
+      <DependentUpon>FrmPMCheckAll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmPMCheckAll.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmPMCheckAllA.Designer.vb">
+      <DependentUpon>FrmPMCheckAllA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmPMCheckAllA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmPMChecker.Designer.vb">
+      <DependentUpon>FrmPMChecker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmPMChecker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmSeachPM.Designer.vb">
+      <DependentUpon>FrmSeachPM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmSeachPM.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\FrmSeachSimple.Designer.vb">
@@ -167,6 +215,18 @@
       <DependentUpon>FrmSearch.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\FrmSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmSearchUser.Designer.vb">
+      <DependentUpon>FrmSearchUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmSearchUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmSelection.Designer.vb">
+      <DependentUpon>FrmSelection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmSelection.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\FrmUserLog.Designer.vb">
@@ -220,20 +280,50 @@
     <EmbeddedResource Include="Form\FrmLogin.resx">
       <DependentUpon>FrmLogin.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmMachineLog.resx">
+      <DependentUpon>FrmMachineLog.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmManagement.resx">
       <DependentUpon>FrmManagement.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmMMange.resx">
+      <DependentUpon>FrmMMange.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmNoGoodMsg.resx">
       <DependentUpon>FrmNoGoodMsg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmPM.resx">
+      <DependentUpon>FrmPM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmPMCal.resx">
+      <DependentUpon>FrmPMCal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmPMCheckAll.resx">
+      <DependentUpon>FrmPMCheckAll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmPMCheckAllA.resx">
+      <DependentUpon>FrmPMCheckAllA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmPMChecker.resx">
+      <DependentUpon>FrmPMChecker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmSeachPM.resx">
+      <DependentUpon>FrmSeachPM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmSeachSimple.resx">
       <DependentUpon>FrmSeachSimple.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmSearch.resx">
       <DependentUpon>FrmSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmSearchUser.resx">
+      <DependentUpon>FrmSearchUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmSelection.resx">
+      <DependentUpon>FrmSelection.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmUserLog.resx">
       <DependentUpon>FrmUserLog.vb</DependentUpon>

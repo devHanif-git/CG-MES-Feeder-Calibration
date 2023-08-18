@@ -1,27 +1,28 @@
-﻿Public Class FrmCheckAll
+﻿Public Class FrmPMCheckAll
     Public SQL As New SQLControl
 
     Public Sub New()
         InitializeComponent()
         SetupDGV()
     End Sub
-    Private Sub FrmCheckAll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmPMCheckAll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
 
         LoadDatatoDGV()
         Me.Show()
 
-        dgvFeeder.Focus()
+        dgvMachine.Focus()
     End Sub
+
     Private Sub SetupDGV()
-        With dgvFeeder
+        With dgvMachine
             .RowHeadersVisible = False
             .EnableHeadersVisualStyles = False
             .ColumnCount = 3
             .AllowUserToResizeRows = False
             .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
-            Dim columns As String() = {"No.", "Feeder ID", "Calibration Date"}
+            Dim columns As String() = {"No.", "Machine ID", "Calibration Date"}
             Dim widths As Integer() = {40, 100, 270}
 
             For i As Integer = 0 To columns.Length - 1
@@ -35,20 +36,20 @@
     End Sub
 
     Private Sub LoadDatatoDGV()
-        dgvFeeder.Rows.Clear()
+        dgvMachine.Rows.Clear()
         Dim currentDate As Date = Date.Now
         Dim calibrationDate As Date
 
-        SQL.ExecQuery("SELECT FeederManagement.FStatus, FeederCalibration.* 
-                       FROM FeederCalibration JOIN FeederManagement ON 
-                       FeederCalibration.FeederNumber = FeederManagement.FeederNumber 
-                       ORDER BY FeederCalibration.FeederNumber")
+        SQL.ExecQuery("SELECT MachineManagement.MStatus, MachineCalibration.* 
+                       FROM MachineCalibration JOIN MachineManagement ON 
+                       MachineCalibration.MachineID = MachineManagement.MachineID 
+                       ORDER BY MachineCalibration.MachineID")
         If SQL.HasException(True) Then Exit Sub
 
         If SQL.RecordCount > 0 Then
             Dim counter As Integer = 0
             For i As Integer = 1 To SQL.DBDT.Rows.Count
-                Dim status As Boolean = SQL.DBDT.Rows(i - 1)("FStatus")
+                Dim status As Boolean = SQL.DBDT.Rows(i - 1)("MStatus")
                 If status Then
                     If SQL.DBDT.Rows(i - 1)("CalibrationDate") Is DBNull.Value Then
                         calibrationDate = Date.MinValue
@@ -56,7 +57,7 @@
                         calibrationDate = SQL.DBDT.Rows(i - 1)("CalibrationDate")
                     End If
 
-                    Dim calibrationNeededDate As Date = calibrationDate.AddMonths(3)
+                    Dim calibrationNeededDate As Date = calibrationDate.AddMonths(1)
                     Dim calibrationWarningDate As Date = calibrationNeededDate.AddDays(-7)
 
                     If Not (currentDate >= calibrationNeededDate Or currentDate >= calibrationWarningDate) Then
@@ -65,14 +66,14 @@
 
                     counter += 1
                     If calibrationDate = Date.MinValue Then 'DBNull
-                        dgvFeeder.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("FeederNumber"), "N/A"})
-                        dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(2).Style.BackColor = Color.Red
+                        dgvMachine.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("MachineID"), "N/A"})
+                        dgvMachine.Rows(dgvMachine.Rows.Count - 1).Cells(2).Style.BackColor = Color.Red
                     ElseIf currentDate > calibrationNeededDate Then
-                        dgvFeeder.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("FeederNumber"), calibrationDate.ToString("d")})
-                        dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(2).Style.BackColor = Color.Red
+                        dgvMachine.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("MachineID"), calibrationDate.ToString("d")})
+                        dgvMachine.Rows(dgvMachine.Rows.Count - 1).Cells(2).Style.BackColor = Color.Red
                     ElseIf currentDate >= calibrationWarningDate Then
-                        dgvFeeder.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("FeederNumber"), calibrationDate.ToString("d")})
-                        dgvFeeder.Rows(dgvFeeder.Rows.Count - 1).Cells(2).Style.BackColor = Color.Yellow
+                        dgvMachine.Rows.Add(New Object() {counter.ToString() + ".", SQL.DBDT.Rows(i - 1)("MachineID"), calibrationDate.ToString("d")})
+                        dgvMachine.Rows(dgvMachine.Rows.Count - 1).Cells(2).Style.BackColor = Color.Yellow
                     End If
                 End If
             Next
@@ -84,12 +85,12 @@
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        FrmSeachSimple.selection = 2
-        FrmSeachSimple.txtFeederID.Focus()
-        FrmSeachSimple.ShowDialog()
+        FrmSeachPM.selection = 2
+        FrmSeachPM.txtMachineID.Focus()
+        FrmSeachPM.ShowDialog()
     End Sub
 
-    Private Sub dgvFeeder_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvFeeder.KeyDown
+    Private Sub dgvMachine_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvMachine.KeyDown
         If e.KeyCode = Keys.F AndAlso e.Control Then
             ' Ctrl+F is pressed
             btnSearch.PerformClick()

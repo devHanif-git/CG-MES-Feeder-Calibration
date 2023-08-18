@@ -12,12 +12,13 @@
 
     Public Sub New()
         InitializeComponent()
+        ResizeAndCenter()
+        SetupDGV()
     End Sub
     Private Sub FrmManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
-        ResizeAndCenter()
-        SetupDGV()
+
         LoadDatatoDGV()
 
         Me.Show()
@@ -95,8 +96,7 @@
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
-        Me.Close()
-        FrmMain.Show()
+        ctrlClose.PerformClick()
     End Sub
 
     Private Function GetSelectedIndex(comboBox As ComboBox, targetValue As String) As Integer
@@ -221,6 +221,7 @@
                         If txtFeederID.Text = "" Then
                             MessageBox.Show("The Feeder ID information is required.", "Feeder ID", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                             txtFeederID.Focus()
+                            txtEmployeeID.SelectAll()
                         ElseIf cbxType.SelectedIndex = 0 Then
                             MessageBox.Show("The Feeder Type information is required.", "Feeder Type", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                             cbxType.Focus()
@@ -242,6 +243,7 @@
                                 Dim stts As Boolean = If(cbxStatus.SelectedItem.ToString() = "GOOD", True, False)
 
                                 If Not stts Then
+                                    FrmNoGoodMsg.mode = 1
                                     FrmNoGoodMsg.ShowDialog()
                                 Else
                                     noGoodMsg = ""
@@ -325,6 +327,7 @@
                             Dim stts As Boolean = If(cbxStatus.SelectedItem.ToString() = "GOOD", True, False)
 
                             If Not stts Then
+                                FrmNoGoodMsg.mode = 1
                                 FrmNoGoodMsg.ShowDialog()
                             Else
                                 noGoodMsg = ""

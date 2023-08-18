@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmUserLog
+Partial Class FrmMachineLog
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -27,7 +27,7 @@ Partial Class FrmUserLog
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmUserLog))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMachineLog))
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.ctrlClose = New Guna.UI2.WinForms.Guna2ControlBox()
@@ -38,6 +38,7 @@ Partial Class FrmUserLog
         Me.btnNext = New Guna.UI2.WinForms.Guna2Button()
         Me.btnPrev = New Guna.UI2.WinForms.Guna2Button()
         Me.lblTotalHis = New System.Windows.Forms.Label()
+        Me.btnBack = New Guna.UI2.WinForms.Guna2Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -46,14 +47,13 @@ Partial Class FrmUserLog
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblPage = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnBack = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel3 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.dgvUserLogs = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.dgvMachineLog = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.Guna2Panel1.SuspendLayout()
         Me.Guna2Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Guna2Panel3.SuspendLayout()
-        CType(Me.dgvUserLogs, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvMachineLog, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Guna2DragControl1
@@ -70,7 +70,7 @@ Partial Class FrmUserLog
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Guna2Panel1.Name = "Guna2Panel1"
-        Me.Guna2Panel1.Size = New System.Drawing.Size(980, 30)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(847, 30)
         Me.Guna2Panel1.TabIndex = 82
         '
         'ctrlClose
@@ -80,7 +80,7 @@ Partial Class FrmUserLog
         Me.ctrlClose.FillColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(47, Byte), Integer))
         Me.ctrlClose.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
         Me.ctrlClose.IconColor = System.Drawing.Color.White
-        Me.ctrlClose.Location = New System.Drawing.Point(940, 0)
+        Me.ctrlClose.Location = New System.Drawing.Point(807, 0)
         Me.ctrlClose.Name = "ctrlClose"
         Me.ctrlClose.Size = New System.Drawing.Size(40, 29)
         Me.ctrlClose.TabIndex = 0
@@ -104,7 +104,7 @@ Partial Class FrmUserLog
         Me.btnLast.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold)
         Me.btnLast.ForeColor = System.Drawing.Color.Black
         Me.btnLast.ImageSize = New System.Drawing.Size(25, 25)
-        Me.btnLast.Location = New System.Drawing.Point(911, 9)
+        Me.btnLast.Location = New System.Drawing.Point(779, 9)
         Me.btnLast.Name = "btnLast"
         Me.btnLast.Size = New System.Drawing.Size(57, 18)
         Me.btnLast.TabIndex = 100
@@ -126,7 +126,7 @@ Partial Class FrmUserLog
         Me.btnFirst.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFirst.ForeColor = System.Drawing.Color.Black
         Me.btnFirst.ImageSize = New System.Drawing.Size(25, 25)
-        Me.btnFirst.Location = New System.Drawing.Point(607, 9)
+        Me.btnFirst.Location = New System.Drawing.Point(475, 9)
         Me.btnFirst.Name = "btnFirst"
         Me.btnFirst.Size = New System.Drawing.Size(57, 18)
         Me.btnFirst.TabIndex = 99
@@ -148,7 +148,7 @@ Partial Class FrmUserLog
         Me.btnNext.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold)
         Me.btnNext.ForeColor = System.Drawing.Color.Black
         Me.btnNext.ImageSize = New System.Drawing.Size(25, 25)
-        Me.btnNext.Location = New System.Drawing.Point(848, 9)
+        Me.btnNext.Location = New System.Drawing.Point(716, 9)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(57, 18)
         Me.btnNext.TabIndex = 98
@@ -170,7 +170,7 @@ Partial Class FrmUserLog
         Me.btnPrev.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold)
         Me.btnPrev.ForeColor = System.Drawing.Color.Black
         Me.btnPrev.ImageSize = New System.Drawing.Size(25, 25)
-        Me.btnPrev.Location = New System.Drawing.Point(670, 9)
+        Me.btnPrev.Location = New System.Drawing.Point(538, 9)
         Me.btnPrev.Name = "btnPrev"
         Me.btnPrev.Size = New System.Drawing.Size(57, 18)
         Me.btnPrev.TabIndex = 97
@@ -188,10 +188,36 @@ Partial Class FrmUserLog
         Me.lblTotalHis.TabIndex = 90
         Me.lblTotalHis.Text = "{0} records overall, {1} pages, and 100 records per page."
         '
+        'btnBack
+        '
+        Me.btnBack.Animated = True
+        Me.btnBack.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(47, Byte), Integer))
+        Me.btnBack.BorderRadius = 10
+        Me.btnBack.CustomImages.Image = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.left_arrow1
+        Me.btnBack.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnBack.CustomImages.ImageOffset = New System.Drawing.Point(43, 0)
+        Me.btnBack.CustomImages.ImageSize = New System.Drawing.Size(25, 25)
+        Me.btnBack.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnBack.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnBack.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnBack.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnBack.FillColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(81, Byte), Integer))
+        Me.btnBack.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnBack.ForeColor = System.Drawing.Color.White
+        Me.btnBack.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(117, Byte), Integer))
+        Me.btnBack.ImageOffset = New System.Drawing.Point(15, 0)
+        Me.btnBack.ImageSize = New System.Drawing.Size(50, 50)
+        Me.btnBack.Location = New System.Drawing.Point(640, 55)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.Size = New System.Drawing.Size(195, 36)
+        Me.btnBack.TabIndex = 105
+        Me.btnBack.Text = "Back"
+        Me.btnBack.TextOffset = New System.Drawing.Point(12, 0)
+        '
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.DarkGray
-        Me.Panel4.Location = New System.Drawing.Point(760, 51)
+        Me.Panel4.Location = New System.Drawing.Point(627, 51)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1, 45)
         Me.Panel4.TabIndex = 101
@@ -222,7 +248,7 @@ Partial Class FrmUserLog
         Me.txtSearch.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtSearch.PlaceholderText = ""
         Me.txtSearch.SelectedText = ""
-        Me.txtSearch.Size = New System.Drawing.Size(417, 33)
+        Me.txtSearch.Size = New System.Drawing.Size(284, 33)
         Me.txtSearch.TabIndex = 100
         '
         'Label1
@@ -250,7 +276,7 @@ Partial Class FrmUserLog
         Me.cbxType.ForeColor = System.Drawing.Color.Black
         Me.cbxType.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
         Me.cbxType.ItemHeight = 30
-        Me.cbxType.Items.AddRange(New Object() {"Record Time", "Name", "Employee ID", "Machine ID", "Feeder ID"})
+        Me.cbxType.Items.AddRange(New Object() {"Machine ID", "Record Time", "Calibration Date"})
         Me.cbxType.Location = New System.Drawing.Point(79, 55)
         Me.cbxType.MaxDropDownItems = 14
         Me.cbxType.Name = "cbxType"
@@ -284,7 +310,7 @@ Partial Class FrmUserLog
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.Size = New System.Drawing.Size(980, 37)
+        Me.Guna2Panel2.Size = New System.Drawing.Size(847, 37)
         Me.Guna2Panel2.TabIndex = 0
         '
         'lblPage
@@ -292,7 +318,7 @@ Partial Class FrmUserLog
         Me.lblPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.lblPage.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPage.ForeColor = System.Drawing.Color.White
-        Me.lblPage.Location = New System.Drawing.Point(733, 7)
+        Me.lblPage.Location = New System.Drawing.Point(601, 7)
         Me.lblPage.Name = "lblPage"
         Me.lblPage.Size = New System.Drawing.Size(109, 20)
         Me.lblPage.TabIndex = 96
@@ -310,59 +336,33 @@ Partial Class FrmUserLog
         Me.Panel1.Controls.Add(Me.lblDetails)
         Me.Panel1.Controls.Add(Me.Guna2Panel2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 602)
+        Me.Panel1.Location = New System.Drawing.Point(0, 556)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(980, 108)
+        Me.Panel1.Size = New System.Drawing.Size(847, 108)
         Me.Panel1.TabIndex = 79
-        '
-        'btnBack
-        '
-        Me.btnBack.Animated = True
-        Me.btnBack.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(47, Byte), Integer))
-        Me.btnBack.BorderRadius = 10
-        Me.btnBack.CustomImages.Image = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.left_arrow1
-        Me.btnBack.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.btnBack.CustomImages.ImageOffset = New System.Drawing.Point(43, 0)
-        Me.btnBack.CustomImages.ImageSize = New System.Drawing.Size(25, 25)
-        Me.btnBack.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnBack.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnBack.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnBack.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnBack.FillColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(81, Byte), Integer))
-        Me.btnBack.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btnBack.ForeColor = System.Drawing.Color.White
-        Me.btnBack.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(117, Byte), Integer))
-        Me.btnBack.ImageOffset = New System.Drawing.Point(15, 0)
-        Me.btnBack.ImageSize = New System.Drawing.Size(50, 50)
-        Me.btnBack.Location = New System.Drawing.Point(773, 55)
-        Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(195, 36)
-        Me.btnBack.TabIndex = 105
-        Me.btnBack.Text = "Back"
-        Me.btnBack.TextOffset = New System.Drawing.Point(12, 0)
         '
         'Guna2Panel3
         '
         Me.Guna2Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
         Me.Guna2Panel3.Controls.Add(Me.Panel1)
-        Me.Guna2Panel3.Controls.Add(Me.dgvUserLogs)
+        Me.Guna2Panel3.Controls.Add(Me.dgvMachineLog)
         Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel3.Location = New System.Drawing.Point(0, 30)
         Me.Guna2Panel3.Name = "Guna2Panel3"
-        Me.Guna2Panel3.Size = New System.Drawing.Size(980, 710)
+        Me.Guna2Panel3.Size = New System.Drawing.Size(847, 664)
         Me.Guna2Panel3.TabIndex = 83
         '
-        'dgvUserLogs
+        'dgvMachineLog
         '
-        Me.dgvUserLogs.AllowUserToAddRows = False
-        Me.dgvUserLogs.AllowUserToDeleteRows = False
-        Me.dgvUserLogs.AllowUserToResizeRows = False
+        Me.dgvMachineLog.AllowUserToAddRows = False
+        Me.dgvMachineLog.AllowUserToDeleteRows = False
+        Me.dgvMachineLog.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer))
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-        Me.dgvUserLogs.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvMachineLog.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -370,9 +370,9 @@ Partial Class FrmUserLog
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvUserLogs.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.dgvUserLogs.ColumnHeadersHeight = 27
-        Me.dgvUserLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.dgvMachineLog.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvMachineLog.ColumnHeadersHeight = 27
+        Me.dgvMachineLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -380,13 +380,13 @@ Partial Class FrmUserLog
         DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvUserLogs.DefaultCellStyle = DataGridViewCellStyle3
-        Me.dgvUserLogs.Dock = System.Windows.Forms.DockStyle.Top
-        Me.dgvUserLogs.GridColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(241, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.dgvUserLogs.Location = New System.Drawing.Point(0, 0)
-        Me.dgvUserLogs.Name = "dgvUserLogs"
-        Me.dgvUserLogs.ReadOnly = True
-        Me.dgvUserLogs.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.dgvMachineLog.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvMachineLog.Dock = System.Windows.Forms.DockStyle.Top
+        Me.dgvMachineLog.GridColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(241, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.dgvMachineLog.Location = New System.Drawing.Point(0, 0)
+        Me.dgvMachineLog.Name = "dgvMachineLog"
+        Me.dgvMachineLog.ReadOnly = True
+        Me.dgvMachineLog.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -394,55 +394,55 @@ Partial Class FrmUserLog
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvUserLogs.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgvUserLogs.RowHeadersVisible = False
-        Me.dgvUserLogs.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.dgvUserLogs.RowTemplate.Height = 20
-        Me.dgvUserLogs.Size = New System.Drawing.Size(980, 603)
-        Me.dgvUserLogs.TabIndex = 78
-        Me.dgvUserLogs.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.WhiteGrid
-        Me.dgvUserLogs.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer))
-        Me.dgvUserLogs.ThemeStyle.AlternatingRowsStyle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvUserLogs.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.dgvUserLogs.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvUserLogs.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black
-        Me.dgvUserLogs.ThemeStyle.BackColor = System.Drawing.Color.White
-        Me.dgvUserLogs.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(241, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.dgvUserLogs.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.White
-        Me.dgvUserLogs.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.dgvUserLogs.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvUserLogs.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.Black
-        Me.dgvUserLogs.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        Me.dgvUserLogs.ThemeStyle.HeaderStyle.Height = 27
-        Me.dgvUserLogs.ThemeStyle.ReadOnly = True
-        Me.dgvUserLogs.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
-        Me.dgvUserLogs.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.dgvUserLogs.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvUserLogs.ThemeStyle.RowsStyle.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.dgvUserLogs.ThemeStyle.RowsStyle.Height = 20
-        Me.dgvUserLogs.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvUserLogs.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black
+        Me.dgvMachineLog.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        Me.dgvMachineLog.RowHeadersVisible = False
+        Me.dgvMachineLog.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.dgvMachineLog.RowTemplate.Height = 20
+        Me.dgvMachineLog.Size = New System.Drawing.Size(847, 556)
+        Me.dgvMachineLog.TabIndex = 78
+        Me.dgvMachineLog.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.WhiteGrid
+        Me.dgvMachineLog.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer))
+        Me.dgvMachineLog.ThemeStyle.AlternatingRowsStyle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvMachineLog.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.dgvMachineLog.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvMachineLog.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black
+        Me.dgvMachineLog.ThemeStyle.BackColor = System.Drawing.Color.White
+        Me.dgvMachineLog.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(241, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.dgvMachineLog.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.White
+        Me.dgvMachineLog.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.dgvMachineLog.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvMachineLog.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.Black
+        Me.dgvMachineLog.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.dgvMachineLog.ThemeStyle.HeaderStyle.Height = 27
+        Me.dgvMachineLog.ThemeStyle.ReadOnly = True
+        Me.dgvMachineLog.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
+        Me.dgvMachineLog.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.dgvMachineLog.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvMachineLog.ThemeStyle.RowsStyle.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.dgvMachineLog.ThemeStyle.RowsStyle.Height = 20
+        Me.dgvMachineLog.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(174, Byte), Integer), CType(CType(214, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvMachineLog.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black
         '
-        'FrmUserLog
+        'FrmMachineLog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(47, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(980, 740)
+        Me.ClientSize = New System.Drawing.Size(847, 694)
         Me.Controls.Add(Me.Guna2Panel3)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "FrmUserLog"
+        Me.Name = "FrmMachineLog"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "User Log"
+        Me.Text = "Machine Log"
         Me.Guna2Panel1.ResumeLayout(False)
         Me.Guna2Panel2.ResumeLayout(False)
         Me.Guna2Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Guna2Panel3.ResumeLayout(False)
-        CType(Me.dgvUserLogs, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvMachineLog, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -450,8 +450,11 @@ Partial Class FrmUserLog
     Friend WithEvents Guna2DragControl1 As Guna.UI2.WinForms.Guna2DragControl
     Friend WithEvents Guna2Elipse1 As Guna.UI2.WinForms.Guna2Elipse
     Friend WithEvents Guna2ShadowForm1 As Guna.UI2.WinForms.Guna2ShadowForm
+    Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
+    Friend WithEvents ctrlClose As Guna.UI2.WinForms.Guna2ControlBox
     Friend WithEvents Guna2Panel3 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents btnBack As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents Label1 As Label
@@ -464,8 +467,5 @@ Partial Class FrmUserLog
     Friend WithEvents btnPrev As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents lblPage As Label
     Friend WithEvents lblTotalHis As Label
-    Friend WithEvents dgvUserLogs As Guna.UI2.WinForms.Guna2DataGridView
-    Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents ctrlClose As Guna.UI2.WinForms.Guna2ControlBox
-    Friend WithEvents btnBack As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents dgvMachineLog As Guna.UI2.WinForms.Guna2DataGridView
 End Class

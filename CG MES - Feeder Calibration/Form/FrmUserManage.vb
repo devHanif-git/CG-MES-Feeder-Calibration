@@ -2,6 +2,8 @@
     Public SQL As New SQLControl
     Public DATA As New SQLUserLog
 
+    Public Shared mode As Integer
+
     Dim selection As Integer
     Dim oldID As String
     Dim oldEmail As String
@@ -13,21 +15,19 @@
 
     Public Sub New()
         InitializeComponent()
+        ResizeAndCenter()
+        SetupDGV()
+        SetupGroupLvl()
     End Sub
 
     Private Sub FrmUserManage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
-        ResizeAndCenter()
-        SetupDGV()
+
         LoadDatatoDGV()
-        SetupGroupLvl()
+
         dgvUser_CellClick(Nothing, Nothing)
         Me.Show()
-    End Sub
-
-    Private Sub FrmUserManage_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        FrmMain.Show()
     End Sub
 
     Private Sub ResizeAndCenter()
@@ -35,7 +35,6 @@
         LblVer.Top = (LblVer.Parent.Height \ 2) - (LblVer.Height \ 2) + 410
 
         ImgHero.Left = (ImgHero.Parent.Width \ 2) - (ImgHero.Width \ 2)
-        'ImgHero.Top = (ImgHero.Parent.Height \ 2) - (ImgHero.Height \ 2) + 10
 
         lblDetails.Left = (lblDetails.Parent.Width \ 2) - (lblDetails.Width \ 2)
     End Sub
@@ -55,7 +54,7 @@
 
 
             Dim columns As String() = {"No.", "Employee ID", "Employee Name", "User Group", "User Level", "Status"}
-            Dim widths As Integer() = {30, 65, 140, 80, 100, 50}
+            Dim widths As Integer() = {30, 65, 140, 70, 100, 70}
 
             For i As Integer = 0 To columns.Length - 1
                 .Columns(i).Name = columns(i)
@@ -177,7 +176,6 @@
 
     Private Sub dgvUser_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvUser.CellClick
         Dim userLevel As Integer = FrmMain.UserLevel
-        Dim userGroup As String = FrmMain.UserGroup
 
         txtEmployeeID.Text = dgvUser.CurrentRow.Cells(1).Value.ToString
         txtName.Text = dgvUser.CurrentRow.Cells(2).Value.ToString
@@ -499,5 +497,36 @@
         DisableInput()
         dgvUser.Enabled = True
         btnConfirm.Enabled = False
+    End Sub
+
+    Private Sub FrmUserManage_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        If mode = 1 Then
+            FrmMain.Show()
+        ElseIf mode = 2 Then
+            FrmPM.Show()
+        End If
+    End Sub
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        FrmSearchUser.txtCGID.Focus()
+        FrmSearchUser.ShowDialog()
+    End Sub
+
+    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        LoadDatatoDGV()
+    End Sub
+
+    Private Sub dgvUser_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvUser.KeyDown
+        If e.KeyCode = Keys.F AndAlso e.Control Then
+            ' Ctrl+F is pressed
+            btnSearch.PerformClick()
+            e.Handled = True ' Set handled to True to prevent further processing of the key press event
+        End If
+
+        If e.KeyCode = Keys.R AndAlso e.Control Then
+            ' Ctrl+F is pressed
+            btnRefresh.PerformClick()
+            e.Handled = True ' Set handled to True to prevent further processing of the key press event
+        End If
     End Sub
 End Class

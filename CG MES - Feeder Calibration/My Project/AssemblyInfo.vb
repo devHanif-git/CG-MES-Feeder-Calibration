@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("CG MES - Feeder Calibration")>
-<Assembly: AssemblyDescription("Part of the function of CG MES, use for feeder calibration.")>
+<Assembly: AssemblyTitle("CG MES - Feeder and PM Calibration")>
+<Assembly: AssemblyDescription("Part of the function of CG MES, use for feeder and machine preventive maintenance/calibration.")>
 <Assembly: AssemblyCompany("CG Global Profastex Manufacturing Sdn. Bhd.")>
-<Assembly: AssemblyProduct("CG MES - Feeder Calibration")>
+<Assembly: AssemblyProduct("CG MES - Feeder and PM Calibration")>
 <Assembly: AssemblyCopyright("Copyright © devHanif  2023")>
 <Assembly: AssemblyTrademark("")>
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.0.0.1")>
-<Assembly: AssemblyFileVersion("2.0.0.1")>
+<Assembly: AssemblyVersion("2.0.1.0")>
+<Assembly: AssemblyFileVersion("2.0.1.0")>

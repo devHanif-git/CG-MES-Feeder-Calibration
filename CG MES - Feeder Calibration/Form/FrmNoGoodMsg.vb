@@ -1,4 +1,5 @@
 ﻿Public Class FrmNoGoodMsg
+    Public Shared mode As Integer
 
     Public Sub New()
         InitializeComponent()
@@ -10,19 +11,21 @@
         txtMsg.Focus()
     End Sub
 
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        ctrlClose.PerformClick()
-    End Sub
-
     Private Sub FrmNoGoodMsg_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
         txtMsg.Focus()
     End Sub
 
     Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
         If txtMsg.Text.Length < 1 Then
-            FrmManagement.noGoodMsg = ""
+            MessageBox.Show("No good message is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            txtMsg.Focus()
+            Exit Sub
         Else
-            FrmManagement.noGoodMsg = txtMsg.Text.Trim
+            If mode = 1 Then
+                FrmManagement.noGoodMsg = txtMsg.Text.Trim
+            ElseIf mode = 2 Then
+                FrmMMange.noGoodMsg = txtMsg.Text.Trim
+            End If
         End If
 
         Me.Close()

@@ -248,8 +248,8 @@ Partial Class FrmMain
         Me.BtnFLog.Name = "BtnFLog"
         Me.BtnFLog.Size = New System.Drawing.Size(178, 65)
         Me.BtnFLog.TabIndex = 77
-        Me.BtnFLog.Text = "Feeder Logs"
-        Me.BtnFLog.TextOffset = New System.Drawing.Point(26, 0)
+        Me.BtnFLog.Text = "Feeder Log"
+        Me.BtnFLog.TextOffset = New System.Drawing.Point(21, 0)
         '
         'BtnULog
         '
@@ -273,8 +273,8 @@ Partial Class FrmMain
         Me.BtnULog.Name = "BtnULog"
         Me.BtnULog.Size = New System.Drawing.Size(178, 65)
         Me.BtnULog.TabIndex = 78
-        Me.BtnULog.Text = "User Logs"
-        Me.BtnULog.TextOffset = New System.Drawing.Point(16, 0)
+        Me.BtnULog.Text = "User Log"
+        Me.BtnULog.TextOffset = New System.Drawing.Point(11, 0)
         '
         'ImgHero
         '

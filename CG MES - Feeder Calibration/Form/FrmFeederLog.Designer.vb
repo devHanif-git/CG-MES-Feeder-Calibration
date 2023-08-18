@@ -437,7 +437,7 @@ Partial Class FrmFeederLog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmFeederLog"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Feeder Logs"
+        Me.Text = "Feeder Log"
         Me.Guna2Panel1.ResumeLayout(False)
         CType(Me.dgvFeederLogs, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Guna2Panel3.ResumeLayout(False)

@@ -14,14 +14,14 @@
 
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
 
-        If (UserGroup = "System Admin" Or UserGroup = "SMT Feeder" Or UserGroup = "SMT") And (UserLevel = 3 Or UserLevel = 2) Then
+        If (UserGroup = "System Admin" Or UserGroup = "SMT Feeder" Or UserGroup = "SMT") AndAlso (UserLevel = 3 Or UserLevel = 2) Then
             BtnCheck.Enabled = True
             BtnCalibrate.Enabled = True
             BtnFLog.Enabled = True
             BtnULog.Enabled = True
             BtnManage.Enabled = True
             BtnUserManage.Enabled = True
-        ElseIf UserGroup = "SMT Feeder" And UserLevel = 1 Then
+        ElseIf UserGroup = "SMT Feeder" AndAlso UserLevel = 1 Then
             BtnCheck.Enabled = True
             BtnCalibrate.Enabled = True
             BtnFLog.Enabled = False
@@ -70,19 +70,7 @@
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click
-        If Not String.IsNullOrEmpty(UserID) Then
-            DATA.GetUserData(UserID)
-
-            SQL.AddParam("@name", DATA.UName)
-            SQL.AddParam("@uid", DATA.UID)
-            SQL.AddParam("@log", "USER LOGGED OUT OF THE SYSTEM")
-            SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, LogDesc) VALUES(GETDATE(), @name, @uid, @log);")
-            If SQL.HasException(True) Then Exit Sub
-        End If
-
-        Me.Close()
-        FrmLogin.txtID.Focus()
-        FrmLogin.Show()
+        ctrlClose.PerformClick()
     End Sub
 
     Private Sub BtnCalibrate_Click(sender As Object, e As EventArgs) Handles BtnCalibrate.Click
@@ -96,12 +84,20 @@
     End Sub
 
     Private Sub FrmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        Me.Hide()
-        FrmLogin.Show()
+        If Not String.IsNullOrEmpty(UserID) Then
+            DATA.GetUserData(UserID)
+
+            SQL.AddParam("@name", DATA.UName)
+            SQL.AddParam("@uid", DATA.UID)
+            SQL.AddParam("@log", "USER LOGGED OUT OF THE SYSTEM")
+            SQL.ExecQuery("INSERT INTO UserLog(RecordTime, UserName, UserID, LogDesc) VALUES(GETDATE(), @name, @uid, @log);")
+            If SQL.HasException(True) Then Exit Sub
+        End If
     End Sub
 
     Private Sub BtnUserManage_Click(sender As Object, e As EventArgs) Handles BtnUserManage.Click
         Me.Hide()
+        FrmUserManage.mode = 1
         FrmUserManage.Show()
     End Sub
 
@@ -111,7 +107,13 @@
     End Sub
 
     Private Sub BtnULog_Click(sender As Object, e As EventArgs) Handles BtnULog.Click
+        FrmUserLog.mode = 1
         Me.Hide()
         FrmUserLog.Show()
+    End Sub
+
+    Private Sub FrmMain_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        FrmLogin.txtID.Focus()
+        FrmLogin.Show()
     End Sub
 End Class

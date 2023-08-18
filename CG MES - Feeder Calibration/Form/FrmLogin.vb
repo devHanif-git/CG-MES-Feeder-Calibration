@@ -153,10 +153,35 @@ superaccess:
             txtID.Clear()
             txtPass.Clear()
 
-            FrmMain.Show()
+            Dim UserID As String = FrmMain.UserID
+            Dim UserGroup As String = FrmMain.UserGroup
+            Dim UserLevel As Integer = FrmMain.UserLevel
+            Dim selection As Boolean
+
+            If (UserGroup = "System Admin" Or UserGroup = "SMT") AndAlso (UserLevel = 3 Or UserLevel = 2) Then
+                FrmSelection.BtnFeeder.Enabled = True
+                FrmSelection.BtnPM.Enabled = True
+                selection = True
+            ElseIf UserGroup = "SMT Feeder" AndAlso (UserLevel = 1 Or UserLevel = 2) Then
+                FrmSelection.BtnFeeder.Enabled = False
+                FrmSelection.BtnPM.Enabled = False
+                selection = False
+            Else
+                FrmSelection.BtnFeeder.Enabled = False
+                FrmSelection.BtnPM.Enabled = False
+                selection = True
+            End If
+
             pnlLoading.Visible = False
-            Transition.ShowSync(pnlLogin)
             Me.Hide()
+
+            If selection Then
+                FrmSelection.Show()
+            Else
+                FrmMain.Show()
+            End If
+
+            Transition.ShowSync(pnlLogin)
         Else
             pnlLoading.Visible = False
             Transition.ShowSync(pnlLogin)
