@@ -104,7 +104,7 @@ Public Class FrmLogin
                     suspended = True
                 Else
                     Dim UserGroup As String = SQL.DBDT.Rows(0)("UserGroup").ToString
-                    If Not (UserGroup = "SMT" Or UserGroup = "SMT Feeder" Or UserGroup = "System Admin") Then
+                    If Not (UserGroup = "Backend" Or UserGroup = "Backend PM" Or UserGroup = "SMT" Or UserGroup = "SMT Feeder" Or UserGroup = "System Admin") Then
                         noAccess = True
                         Return False
                     End If
@@ -157,28 +157,39 @@ superaccess:
             Dim UserGroup As String = FrmMain.UserGroup
             Dim UserLevel As Integer = FrmMain.UserLevel
             Dim selection As Boolean
+            Dim mode As Integer
 
             If (UserGroup = "System Admin" Or UserGroup = "SMT") AndAlso (UserLevel = 3 Or UserLevel = 2) Then
                 FrmSelection.BtnFeeder.Enabled = True
                 FrmSelection.BtnPM.Enabled = True
                 selection = True
-            ElseIf UserGroup = "SMT Feeder" AndAlso (UserLevel = 1 Or UserLevel = 2) Then
+                mode = 0
+            ElseIf (UserGroup = "Backend" Or UserGroup = "Backend PM") AndAlso (UserLevel = 1 Or UserLevel = 2) Then
                 FrmSelection.BtnFeeder.Enabled = False
+                FrmSelection.BtnPM.Enabled = True
+                selection = False
+                mode = 2
+            ElseIf UserGroup = "SMT Feeder" AndAlso (UserLevel = 1 Or UserLevel = 2) Then
+                FrmSelection.BtnFeeder.Enabled = True
                 FrmSelection.BtnPM.Enabled = False
                 selection = False
+                mode = 1
             Else
                 FrmSelection.BtnFeeder.Enabled = False
                 FrmSelection.BtnPM.Enabled = False
                 selection = True
+                mode = 0
             End If
 
             pnlLoading.Visible = False
             Me.Hide()
 
-            If selection Then
+            If selection AndAlso mode = 0 Then
                 FrmSelection.Show()
-            Else
+            ElseIf mode = 1 Then
                 FrmMain.Show()
+            ElseIf mode = 2 Then
+                FrmPM.Show()
             End If
 
             Transition.ShowSync(pnlLogin)

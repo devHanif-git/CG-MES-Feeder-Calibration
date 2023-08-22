@@ -77,11 +77,13 @@
         cbxLevel.SelectedIndex = 0
 
         If FrmMain.UserLevel = 3 Then
-            cbxGroup.Items.AddRange({"System Admin", "SMT", "SMT Feeder", "Purchasing", "Store", "Q.A."})
+            cbxGroup.Items.AddRange({"System Admin", "SMT", "SMT Feeder", "Backend", "Backend PM", "Purchasing", "Store", "Q.A."})
             cbxLevel.Items.AddRange({"System Administrator", "Group Administrator", "Section Operator"})
         ElseIf FrmMain.UserLevel = 2 Then
             If FrmMain.UserGroup = "SMT" Or FrmMain.UserGroup = "SMT Feeder" Then
                 cbxGroup.Items.AddRange({"SMT", "SMT Feeder"})
+            ElseIf FrmMain.UserGroup = "Backend" Or FrmMain.UserGroup = "Backend PM" Then
+                cbxGroup.Items.AddRange({"Backend", "Backend PM"})
             Else
                 cbxGroup.Items.Add(FrmMain.UserGroup)
             End If
@@ -105,6 +107,10 @@
             If userGroup = "SMT" Or userGroup = "SMT Feeder" Then
                 SQL.AddParam("@3", "")
                 SQL.AddParam("@group", "%SMT%")
+                query += " AND UserGroup LIKE @group ORDER BY UserID;"
+            ElseIf userGroup = "Backend" Or userGroup = "Backend PM" Then
+                SQL.AddParam("@3", "")
+                SQL.AddParam("@group", "%Backend%")
                 query += " AND UserGroup LIKE @group ORDER BY UserID;"
             Else
                 SQL.AddParam("@3", "")
@@ -177,58 +183,64 @@
     Private Sub dgvUser_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvUser.CellClick
         Dim userLevel As Integer = FrmMain.UserLevel
 
-        txtEmployeeID.Text = dgvUser.CurrentRow.Cells(1).Value.ToString
-        txtName.Text = dgvUser.CurrentRow.Cells(2).Value.ToString
-        txtPass1.Text = GetUserPassword(dgvUser.CurrentRow.Cells(1).Value.ToString)
-        txtPass2.Text = txtPass1.Text
-        txtEmail.Text = GetUserEmail(dgvUser.CurrentRow.Cells(1).Value.ToString)
+        If Not dgvUser.Rows.Count < 1 Then
+            txtEmployeeID.Text = dgvUser.CurrentRow.Cells(1).Value.ToString
+            txtName.Text = dgvUser.CurrentRow.Cells(2).Value.ToString
+            txtPass1.Text = GetUserPassword(dgvUser.CurrentRow.Cells(1).Value.ToString)
+            txtPass2.Text = txtPass1.Text
+            txtEmail.Text = GetUserEmail(dgvUser.CurrentRow.Cells(1).Value.ToString)
 
-        If userLevel = 3 Then
-            Select Case dgvUser.CurrentRow.Cells("User Group").Value.ToString()
-                Case "System Admin"
-                    cbxGroup.SelectedIndex = 1
-                Case "SMT"
-                    cbxGroup.SelectedIndex = 2
-                Case "SMT Feeder"
-                    cbxGroup.SelectedIndex = 3
-                Case "Purchasing"
-                    cbxGroup.SelectedIndex = 4
-                Case "Store"
-                    cbxGroup.SelectedIndex = 5
-                Case "Q.A."
-                    cbxGroup.SelectedIndex = 6
-            End Select
+            If userLevel = 3 Then
+                Select Case dgvUser.CurrentRow.Cells("User Group").Value.ToString()
+                    Case "System Admin"
+                        cbxGroup.SelectedIndex = 1
+                    Case "SMT"
+                        cbxGroup.SelectedIndex = 2
+                    Case "SMT Feeder"
+                        cbxGroup.SelectedIndex = 3
+                    Case "Backend"
+                        cbxGroup.SelectedIndex = 4
+                    Case "Backend PM"
+                        cbxGroup.SelectedIndex = 5
+                    Case "Purchasing"
+                        cbxGroup.SelectedIndex = 6
+                    Case "Store"
+                        cbxGroup.SelectedIndex = 7
+                    Case "Q.A."
+                        cbxGroup.SelectedIndex = 8
+                End Select
 
-            Select Case dgvUser.CurrentRow.Cells("User Level").Value.ToString()
-                Case "System Administrator"
-                    cbxLevel.SelectedIndex = 1
-                Case "Group Administrator"
-                    cbxLevel.SelectedIndex = 2
-                Case "Section Operator"
-                    cbxLevel.SelectedIndex = 3
-            End Select
-        End If
+                Select Case dgvUser.CurrentRow.Cells("User Level").Value.ToString()
+                    Case "System Administrator"
+                        cbxLevel.SelectedIndex = 1
+                    Case "Group Administrator"
+                        cbxLevel.SelectedIndex = 2
+                    Case "Section Operator"
+                        cbxLevel.SelectedIndex = 3
+                End Select
+            End If
 
-        If userLevel = "2" Then
-            Select Case dgvUser.CurrentRow.Cells("User Group").Value.ToString()
-                Case "SMT", "Purchasing", "Store", "Q.A."
-                    cbxGroup.SelectedIndex = 1
-                Case "SMT Feeder"
-                    cbxGroup.SelectedIndex = 0
-            End Select
+            If userLevel = "2" Then
+                Select Case dgvUser.CurrentRow.Cells("User Group").Value.ToString()
+                    Case "SMT", "Purchasing", "Store", "Q.A.", "Backend"
+                        cbxGroup.SelectedIndex = 1
+                    Case "SMT Feeder", "Backend PM"
+                        cbxGroup.SelectedIndex = 0
+                End Select
 
-            Select Case dgvUser.CurrentRow.Cells("User Level").Value.ToString()
-                Case "Group Administrator"
-                    cbxLevel.SelectedIndex = 1
-                Case "Section Operator"
-                    cbxLevel.SelectedIndex = 2
-            End Select
-        End If
+                Select Case dgvUser.CurrentRow.Cells("User Level").Value.ToString()
+                    Case "Group Administrator"
+                        cbxLevel.SelectedIndex = 1
+                    Case "Section Operator"
+                        cbxLevel.SelectedIndex = 2
+                End Select
+            End If
 
-        If dgvUser.CurrentRow.Cells("Status").Value.ToString() = "SUSPENDED" Then
-            btnSuspend.Checked = True
-        Else
-            btnActive.Checked = True
+            If dgvUser.CurrentRow.Cells("Status").Value.ToString() = "SUSPENDED" Then
+                btnSuspend.Checked = True
+            Else
+                btnActive.Checked = True
+            End If
         End If
     End Sub
 

@@ -304,7 +304,7 @@ Partial Class FrmMMange
         Me.txtMachineName.IconLeftSize = New System.Drawing.Size(25, 25)
         Me.txtMachineName.Location = New System.Drawing.Point(22, 94)
         Me.txtMachineName.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
-        Me.txtMachineName.MaxLength = 7
+        Me.txtMachineName.MaxLength = 255
         Me.txtMachineName.Name = "txtMachineName"
         Me.txtMachineName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtMachineName.PlaceholderText = "Machine Name"
@@ -488,7 +488,7 @@ Partial Class FrmMMange
         Me.cbxLocation.ForeColor = System.Drawing.Color.FromArgb(CType(CType(121, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(129, Byte), Integer))
         Me.cbxLocation.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
         Me.cbxLocation.ItemHeight = 30
-        Me.cbxLocation.Items.AddRange(New Object() {"Select Location", "SMT", "BACKEND"})
+        Me.cbxLocation.Items.AddRange(New Object() {"Select Location"})
         Me.cbxLocation.Location = New System.Drawing.Point(199, 50)
         Me.cbxLocation.MaxDropDownItems = 14
         Me.cbxLocation.Name = "cbxLocation"

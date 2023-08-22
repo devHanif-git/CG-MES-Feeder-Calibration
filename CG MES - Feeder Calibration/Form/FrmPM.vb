@@ -14,14 +14,21 @@
         Guna2ShadowForm1.SetShadowForm(Me)
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
 
-        If (UserGroup = "System Admin" Or UserGroup = "SMT") AndAlso (UserLevel = 3 Or UserLevel = 2) Then
+        If (UserGroup = "System Admin" Or UserGroup = "SMT" Or UserGroup = "Backend") AndAlso (UserLevel = 3 Or UserLevel = 2) Then
             BtnCheck.Enabled = True
             BtnCalibrate.Enabled = True
             BtnMLog.Enabled = True
             BtnULog.Enabled = True
             BtnManage.Enabled = True
             BtnUserManage.Enabled = True
-        ElseIf UserGroup = "SMT" AndAlso UserLevel = 1 Then
+        ElseIf UserGroup = "Backend PM" AndAlso UserLevel = 2 Then
+            BtnCheck.Enabled = True
+            BtnCalibrate.Enabled = True
+            BtnMLog.Enabled = True
+            BtnULog.Enabled = True
+            BtnManage.Enabled = True
+            BtnUserManage.Enabled = True
+        ElseIf (UserGroup = "SMT" Or UserGroup = "Backend" Or UserGroup = "Backend PM") AndAlso UserLevel = 1 Then
             BtnCheck.Enabled = True
             BtnCalibrate.Enabled = True
             BtnMLog.Enabled = False

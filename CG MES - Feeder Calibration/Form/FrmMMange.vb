@@ -19,6 +19,7 @@
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
 
         LoadDatatoDGV()
+        LoadModel()
 
         Me.Show()
         dgvMachine.Focus()
@@ -55,6 +56,24 @@
                 .Columns(i).Width = widths(i)
             Next
         End With
+    End Sub
+
+    Private Sub LoadModel()
+        'REFRESH COMBOBOX
+        cbxLocation.Items.Clear()
+
+        cbxLocation.Items.Add("Select Location")
+        cbxLocation.SelectedIndex = 0
+
+        'Query
+        SQL.ExecQuery("SELECT * FROM MachineLocation ORDER by ID;")
+
+        If SQL.HasException(True) Then Exit Sub
+
+        'LOOP ROW &  ADD TO COMBOBOX
+        For Each r As DataRow In SQL.DBDT.Rows
+            cbxLocation.Items.Add(r("Location").ToString)
+        Next
     End Sub
 
     Private Sub ClearInput()

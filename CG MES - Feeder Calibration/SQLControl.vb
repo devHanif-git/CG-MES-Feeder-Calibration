@@ -3,7 +3,7 @@
 
 Public Class SQLControl
     'DUMMY DB
-    'Private DBCon As New SqlConnection("Data Source=192.168.1.32\CG_MESDUMMY,1434;Initial Catalog=CGMES;User ID=admin;password=eLuQr3GghsMgqGj;Connection Timeout=30;")
+    'Private DBCon As New SqlConnection("Data Source=192.168.1.44\CG_MESDUMMY,1434;Initial Catalog=CGMES;User ID=admin;password=eLuQr3GghsMgqGj;Connection Timeout=30;")
     'REAL DB
     Private DBCon As New SqlConnection("Data Source=192.168.1.100\CG_MES,1433;Initial Catalog=CG_FEEDERnMACHINE;User ID=sa;password=CG!Charlie@Bravo;Connection Timeout=3;")
     Private DBCmd As SqlCommand
