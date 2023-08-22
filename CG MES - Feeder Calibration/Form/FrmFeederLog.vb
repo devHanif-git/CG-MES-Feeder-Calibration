@@ -202,4 +202,8 @@
     Private Sub FrmFeederLog_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         FrmMain.Show()
     End Sub
+
+    Private Sub FrmFeederLog_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        txtSearch.Focus()
+    End Sub
 End Class

@@ -202,4 +202,8 @@
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         ctrlClose.PerformClick()
     End Sub
+
+    Private Sub FrmMachineLog_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        txtSearch.Focus()
+    End Sub
 End Class

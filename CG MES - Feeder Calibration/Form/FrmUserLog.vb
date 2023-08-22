@@ -214,4 +214,8 @@
         End If
 
     End Sub
+
+    Private Sub FrmUserLog_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        txtSearch.Focus()
+    End Sub
 End Class
