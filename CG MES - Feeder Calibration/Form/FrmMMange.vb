@@ -327,7 +327,7 @@
             If SQL.HasException(True) Then Exit Sub
 
             If SQL.RecordCount > 0 Then
-                If Not ((SQL.DBDT.Rows(0)("UserGroup") = "SMT" Or SQL.DBDT.Rows(0)("UserGroup") = "System Admin") And (SQL.DBDT.Rows(0)("UserLevel") = 3 Or SQL.DBDT.Rows(0)("UserLevel") = 2)) Then
+                If Not ((SQL.DBDT.Rows(0)("UserGroup") = "Backend PM" Or SQL.DBDT.Rows(0)("UserGroup") = "SMT" Or SQL.DBDT.Rows(0)("UserGroup") = "System Admin") And (SQL.DBDT.Rows(0)("UserLevel") = 3 Or SQL.DBDT.Rows(0)("UserLevel") = 2)) Then
                     MessageBox.Show("You do not have access to this feature." & vbCrLf & "Please check with your Group Adminisrator for assistance.", "Access Declined", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     txtEmployeeID.SelectAll()
                     txtEmployeeID.Focus()
