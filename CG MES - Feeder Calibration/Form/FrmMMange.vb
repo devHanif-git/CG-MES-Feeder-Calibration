@@ -13,13 +13,13 @@
         InitializeComponent()
         ResizeAndCenter()
         SetupDGV()
+        LoadLocation()
     End Sub
     Private Sub FrmMMange_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Guna2ShadowForm1.SetShadowForm(Me)
         LblVer.Text = String.Format("Ver: {0}", Application.ProductVersion)
 
         LoadDatatoDGV()
-        LoadModel()
 
         Me.Show()
         dgvMachine.Focus()
@@ -58,7 +58,7 @@
         End With
     End Sub
 
-    Private Sub LoadModel()
+    Private Sub LoadLocation()
         'REFRESH COMBOBOX
         cbxLocation.Items.Clear()
 

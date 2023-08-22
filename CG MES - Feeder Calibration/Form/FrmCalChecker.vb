@@ -166,4 +166,8 @@
     Private Sub btnCheckAll_Click(sender As Object, e As EventArgs) Handles btnCheckAll.Click
         FrmCheckAllA.ShowDialog()
     End Sub
+
+    Private Sub FrmCalChecker_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        txtFeederID.Focus()
+    End Sub
 End Class

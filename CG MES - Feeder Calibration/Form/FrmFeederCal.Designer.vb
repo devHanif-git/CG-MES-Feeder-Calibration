@@ -35,6 +35,7 @@ Partial Class FrmFeederCal
         Me.pnlAll = New System.Windows.Forms.Panel()
         Me.btnConfirm = New Guna.UI2.WinForms.Guna2Button()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtEmployeeID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.btnDate1 = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.lblCal = New System.Windows.Forms.Label()
         Me.pnlDetails = New Guna.UI2.WinForms.Guna2Panel()
@@ -46,9 +47,8 @@ Partial Class FrmFeederCal
         Me.btnBack = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlAtas = New System.Windows.Forms.Panel()
-        Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
         Me.txtFeederID = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.txtEmployeeID = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
         Me.ImgHero = New System.Windows.Forms.PictureBox()
         Me.Guna2Panel1.SuspendLayout()
         Me.pnlSection.SuspendLayout()
@@ -191,6 +191,36 @@ Partial Class FrmFeederCal
         Me.Label5.Size = New System.Drawing.Size(227, 28)
         Me.Label5.TabIndex = 11
         Me.Label5.Text = "New Calibration Date: "
+        '
+        'txtEmployeeID
+        '
+        Me.txtEmployeeID.Animated = True
+        Me.txtEmployeeID.BackColor = System.Drawing.Color.Transparent
+        Me.txtEmployeeID.BorderColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.txtEmployeeID.BorderRadius = 8
+        Me.txtEmployeeID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtEmployeeID.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtEmployeeID.DefaultText = ""
+        Me.txtEmployeeID.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtEmployeeID.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtEmployeeID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtEmployeeID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtEmployeeID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
+        Me.txtEmployeeID.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.txtEmployeeID.ForeColor = System.Drawing.Color.FromArgb(CType(CType(121, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(129, Byte), Integer))
+        Me.txtEmployeeID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
+        Me.txtEmployeeID.IconLeft = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.user__4_
+        Me.txtEmployeeID.IconLeftOffset = New System.Drawing.Point(5, 0)
+        Me.txtEmployeeID.IconLeftSize = New System.Drawing.Size(30, 30)
+        Me.txtEmployeeID.Location = New System.Drawing.Point(8, 45)
+        Me.txtEmployeeID.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
+        Me.txtEmployeeID.MaxLength = 7
+        Me.txtEmployeeID.Name = "txtEmployeeID"
+        Me.txtEmployeeID.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.txtEmployeeID.PlaceholderText = "Employee ID"
+        Me.txtEmployeeID.SelectedText = ""
+        Me.txtEmployeeID.Size = New System.Drawing.Size(197, 47)
+        Me.txtEmployeeID.TabIndex = 84
         '
         'btnDate1
         '
@@ -385,36 +415,6 @@ Partial Class FrmFeederCal
         Me.txtFeederID.SelectedText = ""
         Me.txtFeederID.Size = New System.Drawing.Size(350, 47)
         Me.txtFeederID.TabIndex = 83
-        '
-        'txtEmployeeID
-        '
-        Me.txtEmployeeID.Animated = True
-        Me.txtEmployeeID.BackColor = System.Drawing.Color.Transparent
-        Me.txtEmployeeID.BorderColor = System.Drawing.Color.FromArgb(CType(CType(131, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.txtEmployeeID.BorderRadius = 8
-        Me.txtEmployeeID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtEmployeeID.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtEmployeeID.DefaultText = ""
-        Me.txtEmployeeID.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtEmployeeID.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtEmployeeID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtEmployeeID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtEmployeeID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.txtEmployeeID.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.txtEmployeeID.ForeColor = System.Drawing.Color.FromArgb(CType(CType(121, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(129, Byte), Integer))
-        Me.txtEmployeeID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(93, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.txtEmployeeID.IconLeft = Global.CG_MES___Feeder_Calibration.My.Resources.Resources.user__4_
-        Me.txtEmployeeID.IconLeftOffset = New System.Drawing.Point(5, 0)
-        Me.txtEmployeeID.IconLeftSize = New System.Drawing.Size(30, 30)
-        Me.txtEmployeeID.Location = New System.Drawing.Point(8, 45)
-        Me.txtEmployeeID.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
-        Me.txtEmployeeID.MaxLength = 7
-        Me.txtEmployeeID.Name = "txtEmployeeID"
-        Me.txtEmployeeID.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.txtEmployeeID.PlaceholderText = "Employee ID"
-        Me.txtEmployeeID.SelectedText = ""
-        Me.txtEmployeeID.Size = New System.Drawing.Size(197, 47)
-        Me.txtEmployeeID.TabIndex = 84
         '
         'ImgHero
         '

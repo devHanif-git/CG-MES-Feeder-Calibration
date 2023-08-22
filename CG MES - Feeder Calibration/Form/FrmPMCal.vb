@@ -253,4 +253,8 @@
     Private Sub FrmPMCal_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         FrmPM.Show()
     End Sub
+
+    Private Sub FrmPMCal_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        txtMachineID.Focus()
+    End Sub
 End Class

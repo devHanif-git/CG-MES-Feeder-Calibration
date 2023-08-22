@@ -225,7 +225,7 @@
                     Case "SMT", "Purchasing", "Store", "Q.A.", "Backend"
                         cbxGroup.SelectedIndex = 1
                     Case "SMT Feeder", "Backend PM"
-                        cbxGroup.SelectedIndex = 0
+                        cbxGroup.SelectedIndex = 2
                 End Select
 
                 Select Case dgvUser.CurrentRow.Cells("User Level").Value.ToString()

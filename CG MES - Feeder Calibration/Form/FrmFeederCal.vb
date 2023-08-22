@@ -264,4 +264,8 @@
             End If
         End If
     End Sub
+
+    Private Sub FrmFeederCal_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        txtFeederID.Focus()
+    End Sub
 End Class
