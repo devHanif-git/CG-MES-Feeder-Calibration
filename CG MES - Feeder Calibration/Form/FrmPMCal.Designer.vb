@@ -359,7 +359,7 @@ Partial Class FrmPMCal
         Me.lblLocation.BackColor = System.Drawing.Color.Transparent
         Me.lblLocation.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLocation.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.lblLocation.Location = New System.Drawing.Point(416, 69)
+        Me.lblLocation.Location = New System.Drawing.Point(381, 69)
         Me.lblLocation.Name = "lblLocation"
         Me.lblLocation.Size = New System.Drawing.Size(98, 28)
         Me.lblLocation.TabIndex = 9

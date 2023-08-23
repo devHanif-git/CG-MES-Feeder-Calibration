@@ -38,6 +38,7 @@
         lblDetails.Left = (lblDetails.Parent.Width \ 2) - (lblDetails.Width \ 2)
         lblCal.Left = (lblCal.Parent.Width \ 2) - (lblCal.Width \ 2)
         lblMName.Left = (lblMName.Parent.Width \ 2) - (lblMName.Width \ 2)
+        lblLocation.Left = lblLocation.Parent.Width - lblLocation.Width - 15
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
